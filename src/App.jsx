@@ -1,5 +1,6 @@
+import React from 'react'
 import './App.css'
-import LandingPage from "./landingPage/LandingPage";
+import LandingPage from "./components/landingPage/LandingPage";
 function App() {
 
   return (
@@ -10,3 +11,4 @@ function App() {
 }
 
 export default App
+

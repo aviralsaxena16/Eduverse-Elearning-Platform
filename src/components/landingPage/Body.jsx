@@ -10,7 +10,7 @@ const Body = () => {
         <button className="sign-in-btn">Sign In</button>
       </div>
       <div className="image-section">
-        <img src="https://cdn.kastatic.org/images/lohp/laptop_collage@2x.png" alt="Image" />
+        <img src="https://static.uacdn.net/production/_next/static/images/home-illustration.svg?q=75&auto=format%2Ccompress&w=640" alt="Image" />
       </div>
     </div>
   );
