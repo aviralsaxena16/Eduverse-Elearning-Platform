@@ -9,7 +9,7 @@ const App = () => {
       <Route path='/' element={<LandingPage/>}></Route>
     </Routes>
     </BrowserRouter>
-      
+  
   )
 }
 
