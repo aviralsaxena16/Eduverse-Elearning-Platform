@@ -1,0 +1,115 @@
+* {
+    margin-top: 0%;
+  }
+  
+  nav {
+    background-color: #fff; /* Clean white background */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  ul {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    width: 100%; /* Make ul take full width */
+    justify-content: space-between; /* Ensure space between elements */
+  }
+  
+  li {
+    margin: 0 15px;
+    font-size: 24px; /* Icon size */
+    color: #606060; /* Neutral icon color */
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  li:hover {
+    color: #542fb9; /* Highlighted color on hover */
+  }
+  
+  /* Align the menu icon to the left */
+  .Nav2 .menu {
+    margin-left: 0;
+  }
+  
+  /* Center the search bar */
+  .search-container {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the search bar */
+    position: relative;
+    width: 50%; /* Take up 50% width of the navbar */
+  }
+  
+  /* Style for the search icon */
+  .search-icon {
+    font-size: 24px;
+    color: #606060;
+    position: absolute;
+    left: 10px;
+  }
+  
+  /* Style for the search bar */
+  .search-bar {
+    width: 100%; /* Make search bar take the full width of its container */
+    padding: 8px 40px 8px 35px; /* Add padding for the search icon */
+    border: 1px solid #ddd;
+    border-radius: 20px; /* Rounded look */
+    outline: none;
+    font-size: 16px;
+    transition: all 0.3s ease;
+  }
+  
+  /* Focus state of the search bar */
+  .search-bar:focus {
+    width: 100%;
+    border-color: #ff0000; /* Highlight border */
+    box-shadow: 0 0 8px rgba(255, 0, 0, 0.2);
+  }
+  
+  /* Align the home icon to the right */
+  .home {
+    margin-left: auto; /* Push the home icon to the far right */
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    nav {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    ul {
+      flex-wrap: wrap;
+      width: 100%; /* Make ul full width on small screens */
+    }
+  
+    .search-bar {
+      width: 200px; /* Smaller on mobile */
+    }
+  
+    .search-bar:focus {
+      width: 250px;
+    }
+  
+    li {
+      font-size: 20px; /* Slightly smaller icons */
+      margin: 10px 10px;
+    }
+  
+    /* Ensure search bar remains centered on mobile */
+    .search-container {
+      width: 80%;
+      justify-content: center;
+    }
+  }
+  
