@@ -1,0 +1,93 @@
+/* Sidebar container */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100%;
+  background-color: #fff;  /* White background */
+  color: #6a1b9a;  /* Purple text */
+  overflow-x: hidden;
+  transition: all 0.3s ease;
+  padding-top: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);  /* Lighter shadow */
+  z-index: 1000;
+}
+
+.sidebar.close {
+  width: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Close button */
+.close_btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  background: #9c27b0;  /* Purple close button */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.close_btn:hover {
+  background: #7b1fa2;  /* Darker purple on hover */
+}
+
+/* Sidebar options */
+.options {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: block;
+}
+
+.options li {
+  padding: 15px 20px;
+  display: block;
+}
+
+.options li a {
+  color: #6a1b9a;  /* Purple text */
+  text-decoration: none;
+  font-size: 18px;
+  display: block;
+  transition: color 0.3s ease, background 0.3s ease;
+}
+
+.options li a:hover {
+  color: #fff;  /* White text on hover */
+  background: #9c27b0;  /* Purple background on hover */
+  border-radius: 5px;
+}
+
+/* Animation for hover effect */
+.sidebar li:hover {
+  background: #9c27b0;  /* Purple hover effect */
+  transition: background 0.3s ease;
+}
+
+/* Media query for smaller screens */
+@media screen and (max-width: 768px) {
+  .sidebar {
+    width: 200px;
+  }
+}
+
+/* Optional: Styling for close button in navbar */
+.Nav2 li:first-child {
+  font-size: 30px;
+  color: #6a1b9a;  /* Purple for the navbar icon */
+}
+
+.Nav2 li:first-child:hover {
+  color: white;  /* White color on hover */
+}

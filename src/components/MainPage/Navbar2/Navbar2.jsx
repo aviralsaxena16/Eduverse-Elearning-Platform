@@ -1,19 +1,24 @@
-
+import React, { useState } from 'react';
 import { HiHome } from 'react-icons/hi';
 import { FaBars } from 'react-icons/fa';
 import { FaUser } from 'react-icons/fa';
 import { MdSearch } from 'react-icons/md';
-
-
-import "./Navbar2.css"
+import Sidebar from '../Side/sidebar';
+import './Navbar2.css';
 
 const Navbar2 = () => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
+
   return (
     <div>
-     <nav>
-        <ul className='Nav2'>
-        <li><FaBars/></li>
-        <li className="search-container">
+      <nav>
+        <ul className="Nav2">
+          <li onClick={toggleSidebar} aria-label="Toggle Sidebar">
+            <FaBars />
+          </li>
+          <li className="search-container">
             <MdSearch className="search-icon" />
             <input
               type="text"
@@ -21,14 +26,13 @@ const Navbar2 = () => {
               className="search-bar"
             />
           </li>
-         
-            <li className='home'><HiHome/></li>
-            <li><FaUser/></li>
-            
+          <li className='home'><HiHome /></li>
+          <li><FaUser /></li>
         </ul>
-    </nav>
+      </nav>
+      <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
     </div>
-  )
-}
+  );
+};
 
-export default Navbar2
+export default Navbar2;
