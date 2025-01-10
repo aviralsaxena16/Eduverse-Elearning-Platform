@@ -4,6 +4,8 @@ import { FaBars } from 'react-icons/fa';
 import { FaUser } from 'react-icons/fa';
 import { MdSearch } from 'react-icons/md';
 import Sidebar from '../Side/sidebar';
+import { NavLink } from 'react-router-dom';
+
 import './Navbar2.css';
 
 const Navbar2 = () => {
