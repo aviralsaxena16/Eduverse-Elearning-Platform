@@ -3,7 +3,7 @@ import { HiHome } from 'react-icons/hi';
 import { FaBars } from 'react-icons/fa';
 import { FaUser } from 'react-icons/fa';
 import { MdSearch } from 'react-icons/md';
-import Sidebar from '../Side/sidebar';
+import Sidebar from '../Side/Sidebar';
 import { NavLink } from 'react-router-dom';
 
 import './Navbar2.css';
