@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import { BrowserRouter as Router,Routes,Route } from 'react-router-dom'
 import LandingPage from '../pages/LandingPage/LandingPage.jsx'
 import MainPage from '../pages/MainPage/MainPage.jsx'
@@ -9,8 +9,8 @@ import QuizPage from '../pages/MainPage/QuizPage.jsx'
 import NotificationPage from '../pages/MainPage/NotificationPage.jsx'
 
 const Routers = () => {
-  return (
-
+  const {isLoggedIn,setIsLoggedIn}=useContext(loginContext)
+return(
 
     <Router>
       <Routes>
