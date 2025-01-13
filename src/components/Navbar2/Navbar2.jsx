@@ -17,7 +17,7 @@ const Navbar2 = () => {
     <div>
       <nav>
         <ul className="Nav2">
-          <li onClick={toggleSidebar} aria-label="Toggle Sidebar">
+          <li onClick={toggleSidebar} aria-label="Toggle Sidebar" className='bars'>
             <FaBars />
           </li>
           <li className="search-container">
@@ -29,7 +29,7 @@ const Navbar2 = () => {
             />
           </li>
           <li className='home'><HiHome /></li>
-          <li><FaUser /></li>
+          <li className='profile'><FaUser /></li>
         </ul>
       </nav>
       <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
