@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router,Routes,Route } from 'react-router-dom'
 import LandingPage from '../pages/LandingPage/LandingPage.jsx'
-import MainPage from '../pages/MainPage/MainPage'
+import MainPage from '../pages/MainPage/MainPage.jsx'
 import BotPage from '../pages/MainPage/BotPage.jsx'
 import GamePage from '../pages/MainPage/GamePage.jsx'
 import CoursePage from '../pages/MainPage/CoursePage.jsx'
@@ -21,14 +21,13 @@ const Routers = () => {
             <LandingPage onLogin={() => setIsLoggedIn(true)} />
           )
         }
-      />
-      
+      /> 
+
        <Route
         path="/home"
         element={isLoggedIn ? <HomePage /> : <Navigate to="/" />}
       />
-        
-        
+                
         <Route path='home/notification' element={<NotificationPage />}/>
         <Route path='home/course' element={<CoursePage />} />
         <Route path='home/bot' element={<BotPage/>} />
