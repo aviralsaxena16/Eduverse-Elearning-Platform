@@ -1,9 +1,8 @@
 
-
+import { NavLink } from "react-router-dom";
 import "./Body.css";
 
 import cover from "../../assets/cover.jpeg"; // Import the cover image
-
 const Body = () => {
   return (
     <div className="body-section">
@@ -17,7 +16,10 @@ const Body = () => {
         
           EduVerse is an innovative online learning platform designed to bring education to your fingertips. We offer a wide range of courses in various fields, taught by industry experts.  Join our community and embark on your educational journey today!
         </p>
-        <button className="sign-in-btn">Sign In</button>
+        <button className="sign-in-btn"> <NavLink to="/register" className="nav-link" activeClassName="active">
+            Register
+          </NavLink></button>
+
       </div>
     </div>
   );

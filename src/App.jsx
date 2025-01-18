@@ -2,7 +2,6 @@
 import { BrowserRouter } from 'react-router-dom';
 import Router from './routers/Routers.jsx';
 import { useState } from 'react';
-import LandingPage from './pages/LandingPage/LandingPage.jsx';
 import { loginContext } from './context/context.jsx';
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
