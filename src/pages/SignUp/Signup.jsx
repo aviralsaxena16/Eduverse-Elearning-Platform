@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "./Signup.css";
@@ -8,9 +8,10 @@ const Signup = () => {
     const [email,setEmail] = useState();
     const [password,setPassword] = useState();
     const navigate = useNavigate();
+    
     const handleSubmit = (event) => {
         event.preventDefault();
-        axios.post( 'http://localhost:3001/register', {name, email, password})
+        axios.post( 'http://localhost:3002/register', {name, email, password})
         .then(result=>{
             console.log(result);
             if(result.data === "already registered"){

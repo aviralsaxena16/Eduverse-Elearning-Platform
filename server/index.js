@@ -2,12 +2,15 @@ import cors from 'cors';
 import express from 'express';
 import mongoose from 'mongoose';
 import User from './models/User.js';
+import e from 'cors';
 
 const app = express();
 app.use(express.json());
 app.use(cors());
 
-mongoose.connect('mongodb://127.0.0.1:27017/eduverse');
+await mongoose.connect('mongodb://127.0.0.1:27017/eduverse')
+.then(console.log("Connect"))
+ .catch(err => console.log(err));
 
 app.post('/register',(req,res)=>{
     const {name, email, password} = req.body;
@@ -17,18 +20,20 @@ app.post('/register',(req,res)=>{
             res.json("Already registered")
         }
         else{
-            User.create(req.body)
-            .then(user_data => res.json(user_data))
-            .catch(err => res.json(err))
-        }
+            const newUser = new User({name,email,password})
+            newUser.save()
+            res.json("User registered successfully!");
+
+            }
     })
 })
 app.post('/login',(req,res)=>{
+    console.log(req.body)
     const {email,password}=req.body;
     User.findOne({email:email})
-    .then(user => {
-        if(user){
-            if(user.password === password){
+    .then(e => {
+        if(e){
+            if(e.password === password){
                 res.json("Login Successful!")
             }
             else{
@@ -39,8 +44,9 @@ app.post('/login',(req,res)=>{
             res.json("User not found!");
         }
     })
-})
+    .catch(err=>{console.log(err)});
+});
 
-app.listen(3001,()=>{
-    console.log("Server is running on http://127.0.0.1:3001");
+app.listen(3002,()=>{
+    console.log("Server is running on http://127.0.0.1:3002");
 });
