@@ -1,8 +1,12 @@
 import React from 'react'
+import { CardSubtitle } from 'react-bootstrap'
 
 const QuizPage = () => {
+  dict={'field':no}
   return (
-    <div>QuizPage</div>
+    <div>
+  
+    </div>
   )
 }
 
