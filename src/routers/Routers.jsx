@@ -23,7 +23,7 @@ const Routers = () => {
       <Route path="/home/course" element={<CoursePage />} />
       <Route path="/home/bot" element={<BotPage />} />
       <Route path="/home/games" element={<GamePage />} />
-      <Route path="/home/quiz" element={<QuizPage />} />
+      <Route path="/quiz" element={<QuizPage />} />
     </Routes>
   );
 };
