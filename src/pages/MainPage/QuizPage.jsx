@@ -1,6 +1,10 @@
 import React from 'react'
 import Card from '../../components/Cards/Card.jsx'
+import art from '../../assets/mandala.jpg'
+import './quiz.css'
 const QuizPage = () => {
+
+
   console.log('QuizPage rendered')
   const products=[{title:'General Knowledge',url:'https://www.pngall.com/wp-content/uploads/10/Knowledge-PNG.png',id:9},
     {title:'Books',url:'https://wallpaperaccess.com/full/1209397.jpg',id:10},
@@ -18,7 +22,7 @@ const QuizPage = () => {
     {title:'Geography',url:'https://wallpaperaccess.com/full/3179400.jpg',id:22},
     {title:'History',url:'https://wallpaperaccess.com/full/724343.jpg',id:23},
     {title:'Politics',url:'https://c.wallhere.com/photos/0c/db/1920x1080_px_democrat_politics_Republican_sign-1581921.jpg!d',id:24},
-    {title:'Art',url:'https://images.wallpapersden.com/image/download/village-scenery-digital-art_bGltaGmUmZqaraWkpJRmbmdlrWZlbWU.jpg',id:25},
+    {title:'Art',url:`${art}`,id:25},
     {title:'Celebrities',url:'https://th.bing.com/th/id/OIP.CrEHeIbyGrfJpEf8uX1ewwHaJY?rs=1&pid=ImgDetMain',id:26},
     {title:'Animals',url:'https://th.bing.com/th/id/R.7e8c81718b051f10db133eec2e5c04ab?rik=mq1vL3HzlaCKvg&riu=http%3a%2f%2fgetwallpapers.com%2fwallpaper%2ffull%2f2%2f3%2fc%2f470144.jpg&ehk=A9FOGny2fdhp7ZWWUojmgBhrYd6K2xkslZVDKtYexQE%3d&risl=&pid=ImgRaw&r=0',id:27},
     {title:'Vehicles',url:'https://th.bing.com/th/id/R.4e7acec211a711b2669d91a771c0b4ca?rik=1ij3ke4tcnxHcQ&riu=http%3a%2f%2fwww.pixelstalk.net%2fwp-content%2fuploads%2f2016%2f08%2fFree-Cars-Full-HD-Images-1080p.jpg&ehk=IN1J%2f8CvnnGiJh698L6AgrSF8jq83lL9DMc9lb6t3TA%3d&risl=&pid=ImgRaw&r=0',id:28},

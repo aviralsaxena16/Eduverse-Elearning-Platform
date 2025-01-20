@@ -1,0 +1,43 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centers the cards horizontally */
+    gap: 20px; /* Adds space between cards */
+    padding: 20px; /* Adds padding around the container */
+    background-color: #f8f9fa; /* Light background for the layout */
+  }
+  
+  .card {
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border 0.4s ease;
+    width: 300px;
+    text-align: center;
+    margin: 20px;
+    border: 1px solid #e0e0e0;
+  }
+  
+  .card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    border: 1px solid #007bff;
+  }
+  
+  .card-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 2px solid #f0f0f0;
+  }
+  
+  .card-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #333;
+    margin: 20px 15px;
+    line-height: 1.5;
+  }
+  

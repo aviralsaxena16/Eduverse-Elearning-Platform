@@ -1,44 +1,59 @@
+import React from 'react';
 
-const Card = ( title, url ) => {
+const Card = ({ title, url }) => {
   const cardStyle = {
     background: '#ffffff',
-    borderRadius: '15px',
-    boxShadow: '0 8px 15px rgba(0, 0, 0, 0.1)',
+    borderRadius: '20px',
+    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
     overflow: 'hidden',
-    transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-    width: '280px',
+    transition: 'transform 0.4s ease, box-shadow 0.4s ease, border 0.4s ease',
+    width: '300px',
     textAlign: 'center',
     margin: '20px',
+    border: '1px solid #e0e0e0',
   };
 
   const cardHoverStyle = {
-    transform: 'translateY(-10px)',
-    boxShadow: '0 12px 25px rgba(0, 0, 0, 0.15)',
+    transform: 'translateY(-12px)',
+    boxShadow: '0 8px 30px rgba(0, 0, 0, 0.2)',
+    border: '1px solid #007bff', // Subtle glow on hover
   };
 
   const imgStyle = {
     width: '100%',
-    height: '180px',
+    height: '200px',
     objectFit: 'cover',
     borderBottom: '2px solid #f0f0f0',
   };
 
   const titleStyle = {
-    fontFamily: 'Poppins, sans-serif',
-    fontSize: '1.2rem',
+    fontFamily: "'Poppins', sans-serif",
+    fontSize: '1.3rem',
+    fontWeight: '600',
     color: '#333',
-    margin: '15px 0',
+    margin: '20px 15px',
+    lineHeight: '1.5',
+  };
+
+  const subTextStyle = {
+    fontFamily: "'Roboto', sans-serif",
+    fontSize: '0.9rem',
+    color: '#666',
+    marginBottom: '15px',
   };
 
   return (
-    <div 
-      className="card" 
-      style={cardStyle} 
-      onMouseEnter={(e) => e.currentTarget.style = { ...cardStyle, ...cardHoverStyle }}
-      onMouseLeave={(e) => e.currentTarget.style = cardStyle}
+    <div
+      className="card"
+      style={cardStyle}
+      onMouseEnter={(e) =>
+        Object.assign(e.currentTarget.style, { ...cardStyle, ...cardHoverStyle })
+      }
+      onMouseLeave={(e) => Object.assign(e.currentTarget.style, cardStyle)}
     >
       <img src={url} alt={title} style={imgStyle} />
       <h3 style={titleStyle}>{title}</h3>
+      <p style={subTextStyle}>Click to explore more</p>
     </div>
   );
 };

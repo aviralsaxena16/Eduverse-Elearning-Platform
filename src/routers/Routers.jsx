@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route} from 'react-router-dom';
 import LandingPage from '../pages/LandingPage/LandingPage.jsx';
 import MainPage from '../pages/MainPage/MainPage.jsx';
 import BotPage from '../pages/MainPage/BotPage.jsx';
@@ -12,19 +12,19 @@ import Signup from '../pages/SignUp/Signup.jsx';
 const Routers = () => {
   return (
     <Routes>
-      {/* Public Routes */}
-      <Route path="/" element={<LandingPage />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Signup />} />
-
-      {/* Main Routes */}
-      <Route path="/home" element={<MainPage />} />
-      <Route path="/home/notification" element={<NotificationPage />} />
-      <Route path="/home/course" element={<CoursePage />} />
-      <Route path="/home/bot" element={<BotPage />} />
-      <Route path="/home/games" element={<GamePage />} />
-      <Route path="/quiz" element={<QuizPage />} />
-    </Routes>
+    {/* Public Routes */}
+    <Route path="/" element={<LandingPage />} />
+    <Route path="/login" element={<Login />} />
+    <Route path="/register" element={<Signup />} />
+  
+    {/* Main Routes */}
+    <Route path="/home" element={<MainPage />} />
+    <Route path="/home/notification" element={<NotificationPage />} />
+    <Route path="/home/course" element={<CoursePage />} />
+    <Route path="/home/bot" element={<BotPage />} />
+    <Route path="/home/games" element={<GamePage />} />
+    <Route path="/home/quiz" element={<QuizPage />} />
+  </Routes>
   );
 };
 
