@@ -1,10 +1,11 @@
 import Card from '../../../components/Cards/Card'
 import art from '../../../assets/mandala.jpg'
 import './quiz.css'
+import {useNavigate} from 'react-router-dom'
 
 const QuizPage = () => {
 
-
+   const navigate = useNavigate();
   console.log('QuizPage rendered')
   const products=[{title:'General Knowledge',url:'https://www.pngall.com/wp-content/uploads/10/Knowledge-PNG.png',id:9},
     {title:'Books',url:'https://wallpaperaccess.com/full/1209397.jpg',id:10},
@@ -38,7 +39,7 @@ const QuizPage = () => {
       <h1>Quiz Page</h1>
       <div className="container">
         {products.map(product => (
-          <Card key={product.id} title={product.title} url={product.url} />
+          <Card key={product.id} title={product.title} url={product.url} id={product.id} onClick={()=>navigate(`/quiz/{product.id}`)}/>
         ))}
       </div>
   

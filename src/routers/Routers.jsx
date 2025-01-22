@@ -8,7 +8,7 @@ import QuizPage from '../pages/MainPage/QuizPage/QuizPage.jsx';
 import NotificationPage from '../pages/MainPage/NotificationPage.jsx';
 import Login from '../pages/LoginPage/Login.jsx';
 import Signup from '../pages/SignUp/Signup.jsx';
-
+import Ques from '../pages/MainPage/QuizPage/Ques.jsx';
 const Routers = () => {
   return (
     <Routes>
@@ -24,6 +24,7 @@ const Routers = () => {
     <Route path="/home/bot" element={<BotPage />} />
     <Route path="/home/games" element={<GamePage />} />
     <Route path="/home/quiz" element={<QuizPage />} />
+    <Route path="/home/quiz/:id" element={<Ques/>} />
   </Routes>
   );
 };
