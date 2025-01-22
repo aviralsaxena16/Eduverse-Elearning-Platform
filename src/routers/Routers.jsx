@@ -4,7 +4,7 @@ import MainPage from '../pages/MainPage/MainPage.jsx';
 import BotPage from '../pages/MainPage/BotPage.jsx';
 import GamePage from '../pages/MainPage/GamePage.jsx';
 import CoursePage from '../pages/MainPage/CoursePage.jsx';
-import QuizPage from '../pages/MainPage/QuizPage.jsx';
+import QuizPage from '../pages/MainPage/QuizPage/QuizPage.jsx';
 import NotificationPage from '../pages/MainPage/NotificationPage.jsx';
 import Login from '../pages/LoginPage/Login.jsx';
 import Signup from '../pages/SignUp/Signup.jsx';

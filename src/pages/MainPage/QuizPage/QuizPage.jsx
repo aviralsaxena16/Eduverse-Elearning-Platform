@@ -1,7 +1,7 @@
-import React from 'react'
-import Card from '../../components/Cards/Card.jsx'
-import art from '../../assets/mandala.jpg'
+import Card from '../../../components/Cards/Card'
+import art from '../../../assets/mandala.jpg'
 import './quiz.css'
+
 const QuizPage = () => {
 
 
