@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { HiHome } from 'react-icons/hi';
 import { FaBars } from 'react-icons/fa';
 import { FaUser } from 'react-icons/fa';

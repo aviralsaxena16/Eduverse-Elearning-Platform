@@ -2,7 +2,7 @@
 import { NavLink } from "react-router-dom";
 import "./Body.css";
 
-import cover from "../../assets/cover.jpeg"; // Import the cover image
+import cover from "../../assets/no_bg.png"; // Import the cover image
 const Body = () => {
   return (
     <div className="body-section">

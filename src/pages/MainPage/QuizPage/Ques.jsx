@@ -1,16 +1,17 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useState } from 'react'
+
 const Ques = ({id}) => {
-    const [Ques, setQues] = useState([]);
+    const [Question, setQuestion] = useState([]);
     const [Loading,setLoading] = useState(true);
     const [Error,setError] = useState();
 
     useEffect(()=>{
         const fetchData =async(id)=>{
             const data = fetch(`https://opentdb.com/api.php?amount=10&category=${id}&type=multiple`)
-            data= await data.json();
+            data = await data.json();
             if(data.response_code===0){
-                setQues(data.results);
+                setQuestion(data.results);
                 setLoading(false);
             }
             else{
@@ -23,8 +24,8 @@ const Ques = ({id}) => {
   return (
     <div>
      <h3>Quiz</h3>
-     <div className="questions"></div>
-
+     <div className="questions"></div>+
+-
     </div>
 
   )

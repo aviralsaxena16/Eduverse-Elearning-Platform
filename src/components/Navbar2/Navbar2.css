@@ -1,119 +1,110 @@
-* {
-  margin-top: 0%;
+/* Navbar2.css */
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
 }
 
 nav {
-  background-color: #fff; /* Clean white background */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  background: #066466; /* Solid teal background */
+  color: white;
   padding: 10px 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   position: sticky;
   top: 0;
   z-index: 1000;
 }
 
-ul {
-  list-style-type: none;
+.Nav2 {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  list-style: none;
   margin: 0;
   padding: 0;
-  width: 100%; /* Make ul take full width */
-  justify-content: space-between; /* Ensure space between elements */
 }
 
-li {
-  margin: 0 15px;
-  font-size: 24px; /* Icon size */
-  color: #606060; /* Neutral icon color */
-  cursor: pointer;
-  transition: color 0.3s ease;
-}
-
-li:hover {
-  color: #6a1b9a; /* Highlighted color on hover */
-}
-
-/* Align the menu icon to the left */
-.Nav2 .menu {
-  margin-left: 0;
-}
-
-/* Center the search bar */
-.search-container {
-  display: flex;
+.Nav2 li {
+  display: inline-flex;
   align-items: center;
-  justify-content: center; /* Center the search bar */
-  position: relative;
-  width: 40%; /* Take up 50% width of the navbar */
-  
-}
-
-/* Style for the search icon */
-.search-icon {
+  justify-content: center;
+  color: white;
+  cursor: pointer;
   font-size: 24px;
-  color: #606060;
-  position: absolute;
-  left: 10px;
-}
-
-/* Style for the search bar */
-.search-bar {
-  width: 100%; /* Make search bar take the full width of its container */
-  padding: 8px 40px 8px 35px; /* Add padding for the search icon */
-  border: 1px solid #ddd;
-  border-radius: 20px; /* Rounded look */
-  outline: none;
-  font-size: 16px;
+  padding: 10px;
   transition: all 0.3s ease;
 }
 
-/* Focus state of the search bar */
-.search-bar:focus {
-  width: 100%;
-  border-color: #6a1b9a; /* Highlight border */
-  box-shadow: 0 0 8px rgb(93, 16, 110);
+.Nav2 li:hover {
+  color: #DEB041; /* Gold hover effect */
 }
 
-/* Align the home icon to the right */
-.home {
-  margin-left: auto; /* Push the home icon to the far right */
-}
 .bars {
-  padding-right: 25%;
-  
+  font-size: 26px;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  margin: 0 20px;
+}
+
+.search-icon {
+  font-size: 20px;
+  color: white;
+  margin-right: 8px;
+}
+
+.search-bar {
+  width: 100%;
+  max-width: 300px;
+  padding: 8px 12px;
+  font-size: 16px;
+  border: 1px solid transparent;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  outline: none;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-bar::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.search-bar:focus {
+  background: white;
+  color: #333;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+}
+
+.home, .profile {
+  font-size: 26px;
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
-  nav {
-    flex-direction: column;
-    align-items: flex-start;
+@media screen and (max-width: 768px) {
+  .Nav2 {
+    flex-direction: row;
+    gap: 10px;
   }
 
-  ul {
-    flex-wrap: wrap;
-    width: 100%; /* Make ul full width on small screens */
+  .search-container {
+    flex-grow: unset;
+    width: auto;
+    margin: 0;
   }
 
   .search-bar {
-    width: 200px; /* Smaller on mobile */
+    max-width: 200px;
   }
 
-  .search-bar:focus {
-    width: 250px;
+  .bars {
+    font-size: 22px;
   }
 
-  li {
-    font-size: 20px; /* Slightly smaller icons */
-    margin: 10px 10px;
-  }
-
-  /* Ensure search bar remains centered on mobile */
-  .search-container {
-    width: 80%;
-    justify-content: center;
+  .home, .profile {
+    font-size: 22px;
   }
 }
