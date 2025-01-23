@@ -1,5 +1,5 @@
 
-const Card = ({ title, url }) => {
+const Card = ({ title, url ,id}) => {
   const cardStyle = {
     background: '#ffffff',
     borderRadius: '20px',

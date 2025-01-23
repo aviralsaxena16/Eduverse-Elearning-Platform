@@ -1,7 +1,9 @@
 import { useEffect } from 'react'
 import { useState } from 'react'
+import { useParams } from 'react-router-dom';
 
-const Ques = ({id}) => {
+const Ques = () => {
+    const { id } = useParams()
     const [Question, setQuestion] = useState([]);
     const [Loading,setLoading] = useState(true);
     const [Error,setError] = useState();

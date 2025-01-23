@@ -10,7 +10,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
       <ul className="options">
         <li><Link to="/home" onClick={toggleSidebar}>Home</Link></li>
         <li><Link to="/home/course" onClick={toggleSidebar}>Course</Link></li>
-        <li><Link to="/home/bot" onClick={toggleSidebar}>Bot</Link></li>
+        <li><Link to="/home/chat" onClick={toggleSidebar}>Discuss</Link></li>
         <li><Link to="/home/quiz" onClick={toggleSidebar}>Quiz</Link></li>
         <li><Link to="/home/games" onClick={toggleSidebar}>Games</Link></li>
         <li><Link to="/home/notification" onClick={toggleSidebar}>Notification</Link></li>

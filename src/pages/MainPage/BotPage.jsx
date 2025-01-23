@@ -23,7 +23,7 @@ const BotPage = () => {
 
   return (
     <div>
-      <h1>Welcome to the Bot Page</h1>
+      
     </div>
   );
 };
