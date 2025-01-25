@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { useParams } from 'react-router-dom';
-import './quiz.css'
+import './quiz_ques.css'
 
 const Ques = () => {
     const { id } = useParams()
@@ -70,20 +70,28 @@ if (quesId >= Questions.length) {
 
     const Question=Questions[quesId]
     
-    return(
-        <>
-        <h2>Quiz</h2>
-        <h3>{Question.question}</h3>
-        <ol>
-    {shuffledOptions.map((answer, idx) => (
-        <li key={idx}>
-            <button onClick={() => setAns(answer)}>{answer}</button>
-        </li>
-    ))}
-</ol>
-        <button onClick={handleNext}>Next</button>
-        </>
-    )
-}
-
+    return (
+        <div className="quiz-container">
+          <h3 className="quiz-question">{Question.question}</h3>
+          <div className="quiz-options">
+            {shuffledOptions.map((answer, idx) => (
+              <button 
+                key={idx}
+                onClick={() => setAns(answer)}
+                className={`quiz-option ${ans === answer ? 'selected' : ''}`}
+              >
+                {answer}
+              </button>
+            ))}
+          </div>
+          <button 
+            onClick={handleNext} 
+            className="next-button" 
+            disabled={ans === null}
+          >
+            Next
+          </button>
+        </div>
+      )
+    }
 export default Ques;
