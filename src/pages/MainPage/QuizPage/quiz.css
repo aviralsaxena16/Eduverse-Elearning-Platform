@@ -101,4 +101,109 @@
   footer a:hover {
     text-decoration: underline;
   }
+
+  /* General Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Quiz Container */
+.quiz-container {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Header Styles */
+.quiz-container h2 {
+  font-size: 2rem;
+  margin-bottom: 16px;
+  color: #4caf50;
+}
+
+.quiz-container h3 {
+  font-size: 1.2rem;
+  margin-bottom: 24px;
+  color: #555;
+}
+
+/* Options List */
+ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+ol li {
+  margin: 12px 0;
+}
+
+ol li button {
+  background-color: #4caf50;
+  color: white;
+  font-size: 1rem;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+ol li button:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+ol li button:active {
+  background-color: #3e8e41;
+}
+
+/* Next Button */
+button {
+  background-color: #2196f3;
+  color: white;
+  font-size: 1rem;
+  padding: 12px 24px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #1e88e5;
+  transform: scale(1.05);
+}
+
+button:active {
+  background-color: #1565c0;
+}
+
+/* Completion Screen */
+.quiz-container div {
+  margin-top: 20px;
+}
+
+.quiz-container div h2 {
+  color: #ff5722;
+}
+
+.quiz-container div h3 {
+  font-size: 1.4rem;
+  color: #333;
+}
+
   
