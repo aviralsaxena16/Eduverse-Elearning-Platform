@@ -10,20 +10,28 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:3002/login', {email,password})
-    .then(result=>{
-      console.log(result);
-      if(result.data === "Login Successful!"){
-        console.log("login successfully done");
-        alert("Login Successfully Done");
-        navigate('/home');
-      }
-      else{
-        alert("Incorrect Password!");
-      }
-    })
-    .catch(err=> console.log(err));
-  }
+  
+    axios.post('http://localhost:4507/login', { email, password })
+      .then(result => {
+        // Check for success or failure response
+        if (result.data === "Login successful!") {
+          console.log("Login successfully done");
+          alert("Login Successfully Done");
+          navigate('/home');
+        } else if (result.data === "Wrong password") {
+          alert("Incorrect password. Please try again.");
+        } else if (result.data === "No records found!") {
+          alert("No account found with this email address.");
+        } else {
+          alert("Unexpected response from server.");
+        }
+      })
+      .catch(err => {
+        console.log(err);
+        alert("An error occurred while logging in.");
+      });
+  };
+  
   return (
     <div>
        <div className="login">

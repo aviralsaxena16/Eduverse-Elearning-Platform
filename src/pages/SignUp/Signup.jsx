@@ -11,20 +11,28 @@ const Signup = () => {
     
     const handleSubmit = (event) => {
         event.preventDefault();
-        axios.post( 'http://localhost:3002/register', {name, email, password})
-        .then(result=>{
-            console.log(result);
-            if(result.data === "already registered"){
-                alert("E-mail already registered! Please Login to proceed.");
-                navigate('/login');
+        
+         if (password.length < 6) {
+          alert("Password must be at least 6 characters long.");
+          return;
+        }
+      
+        axios.post('http://localhost:4507/register', { name, email, password })
+          .then(result => {
+            if (result.data === "Already registered") {
+              alert("E-mail already registered! Please Login to proceed.");
+              navigate('/login');
+            } else {
+              alert("Registration successful! Please Login to proceed.");
+              navigate('/login');
             }
-            else{
-                alert("Registration succefully done! Please Login to proceed");
-                navigate('/login');
-            }
-        })
-        .catch(err => console.log(err));
-    }
+          })
+          .catch(err => {
+            console.log(err);
+            alert("An error occurred while registering.");
+          });
+      };
+      
   return (
     <div className="signup">
         <h2>Sign Up</h2>
