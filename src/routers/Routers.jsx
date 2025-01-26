@@ -10,6 +10,7 @@ import Login from '../pages/LoginPage/Login.jsx';
 import Signup from '../pages/SignUp/Signup.jsx';
 import Ques from '../pages/MainPage/QuizPage/ques.jsx';
 import ChatRoom from '../pages/MainPage/chatroom/ChatRoom.jsx';
+import ProtectedRoute from './ProtectedRoute.jsx';
 const Routers = () => {
   return (
     <Routes>
@@ -19,13 +20,41 @@ const Routers = () => {
     <Route path="/register" element={<Signup />} />
   
     {/* Main Routes */}
-    <Route path="/home" element={<MainPage />} />
-    <Route path="/home/notification" element={<NotificationPage />} />
-    <Route path="/home/course" element={<CoursePage />} />
-    <Route path="/home/chat" element={<ChatRoom />} />
-    <Route path="/home/games" element={<GamePage />} />
-    <Route path="/home/quiz" element={<QuizPage />} />
-    <Route path="/quiz/:id" element={<Ques/>} />
+    <Route path="/home" element={
+          <ProtectedRoute>
+            <MainPage />
+          </ProtectedRoute>
+        } />
+    <Route path="/home/notification" element={
+          <ProtectedRoute>
+            <NotificationPage />
+          </ProtectedRoute>
+        } />
+    <Route path="/home/course" element={
+          <ProtectedRoute>
+            <CoursePage />
+          </ProtectedRoute>
+        } />
+    <Route path="/home/chat" element={
+          <ProtectedRoute>
+            <ChatRoom />
+          </ProtectedRoute>
+        } />
+    <Route path="/home/games" element={
+          <ProtectedRoute>
+            <GamePage />
+          </ProtectedRoute>
+        } />
+    <Route path="/home/quiz" element={
+          <ProtectedRoute>
+            <QuizPage />
+          </ProtectedRoute>
+        } />
+    <Route path="/quiz/:id" element={
+          <ProtectedRoute>
+            <Ques />
+          </ProtectedRoute>
+        } />
   </Routes>
   );
 };

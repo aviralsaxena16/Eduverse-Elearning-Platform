@@ -1,62 +1,113 @@
 import { useState } from "react";
-import axios from 'axios';
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import axios from "axios";
+import { useNavigate, Link } from "react-router-dom";
 import "./Signup.css";
+
 const Signup = () => {
-    const [name,setName] = useState();
-    const [email,setEmail] = useState();
-    const [password,setPassword] = useState();
-    const navigate = useNavigate();
-    
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        
-         if (password.length < 6) {
-          alert("Password must be at least 6 characters long.");
-          return;
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(null); // State for error messages
+  const [loading, setLoading] = useState(false); // State for loading indication
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setError(null); // Clear any previous errors
+    setLoading(true); // Start loading
+
+    // Password length check
+    if (password.length < 6) {
+      setError("Password must be at least 6 characters long.");
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const result = await axios.post("http://localhost:4507/register", 
+        {
+          name,
+          email,
+          password,
+        },
+        {
+          withCredentials: true,
+          headers: {
+            'Content-Type': 'application/json'
+          }
         }
-      
-        axios.post('http://localhost:4507/register', { name, email, password })
-          .then(result => {
-            if (result.data === "Already registered") {
-              alert("E-mail already registered! Please Login to proceed.");
-              navigate('/login');
-            } else {
-              alert("Registration successful! Please Login to proceed.");
-              navigate('/login');
-            }
-          })
-          .catch(err => {
-            console.log(err);
-            alert("An error occurred while registering.");
-          });
-      };
-      
+      );
+      if (result.data === "Already registered") {
+        setError("E-mail already registered! Please log in to proceed.");
+        navigate("/login");
+      } else {
+        alert("Registration successful! Please log in to proceed.");
+        navigate("/login");
+      }
+    } catch (err) {
+      console.error(err);
+      setError("An error occurred while registering. Please try again.");
+    } finally {
+      setLoading(false); // Stop loading
+    }
+  };
+
   return (
     <div className="signup">
-        <h2>Sign Up</h2>
-        <form onSubmit={handleSubmit}>
-            <div className="input">
-                <label htmlFor="name"><strong>Name</strong></label>
-                <input type="text" id="name" placeholder='Enter your name' onChange={(e)=>setName(e.target.value)} required/>
-            </div>
-            <div className="input">
-                <label htmlFor="email"><strong>Email</strong></label>
-                <input type="email" id="email" placeholder='Enter your email' onChange={(e)=>setEmail(e.target.value)} required/>
-            </div>
-            <div className="input">
-                <label htmlFor="password">Password</label>
-                <input type="password" id="password" placeholder='Enter your password' onChange={(e)=>setPassword(e.target.value)} required minLength={6}/>
-            </div>
-            <button type="submit>" className="btn">Sign Up</button>
-           </form>
-           <div className="link-container">
-            <p className="link">Already have an account? <Link to="/login">Login</Link></p>
-           </div>
-        
+      <h2>Sign Up</h2>
+      <form onSubmit={handleSubmit}>
+        <div className="input">
+          <label htmlFor="name">
+            <strong>Name</strong>
+          </label>
+          <input
+            type="text"
+            id="name"
+            placeholder="Enter your name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+        </div>
+        <div className="input">
+          <label htmlFor="email">
+            <strong>Email</strong>
+          </label>
+          <input
+            type="email"
+            id="email"
+            placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
+        <div className="input">
+          <label htmlFor="password">
+            <strong>Password</strong>
+          </label>
+          <input
+            type="password"
+            id="password"
+            placeholder="Enter your password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            minLength={6}
+          />
+        </div>
+        {error && <p className="error">{error}</p>}
+        <button type="submit" className="btn" disabled={loading}>
+          {loading ? "Signing Up..." : "Sign Up"}
+        </button>
+      </form>
+      <div className="link-container">
+        <p className="link">
+          Already have an account? <Link to="/login">Login</Link>
+        </p>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Signup
+export default Signup;
