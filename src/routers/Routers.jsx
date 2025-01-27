@@ -11,6 +11,8 @@ import Signup from '../pages/SignUp/Signup.jsx';
 import Ques from '../pages/MainPage/QuizPage/ques.jsx';
 import ChatRoom from '../pages/MainPage/chatroom/ChatRoom.jsx';
 import ProtectedRoute from './ProtectedRoute.jsx';
+import VideoDetails from '../pages/MainPage/VideoDetails.jsx';
+
 const Routers = () => {
   return (
     <Routes>
@@ -33,6 +35,12 @@ const Routers = () => {
     <Route path="/home/course" element={
           <ProtectedRoute>
             <CoursePage />
+          </ProtectedRoute>
+        } />
+
+<Route path="/home/course/video/:videoID" element={
+          <ProtectedRoute>
+            <VideoDetails />
           </ProtectedRoute>
         } />
     <Route path="/home/chat" element={
