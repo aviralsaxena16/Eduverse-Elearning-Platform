@@ -4,6 +4,7 @@ import BotPage from './BotPage.jsx';
 import axios from 'axios'
 import {useEffect} from 'react'
 import {useNavigate} from 'react-router-dom';
+
 const MainPage = () => {
   axios.defaults.withCredentials = true
   const navigate = useNavigate();
