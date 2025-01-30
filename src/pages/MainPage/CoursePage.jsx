@@ -49,7 +49,8 @@ function YouTubeVideoSearch() {
       });
 
       setVideos(enrichedVideos);
-    } catch (err) {
+    } 
+    catch (err) {
       setError(err.message);
       setVideos([]);
     } finally {

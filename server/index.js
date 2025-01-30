@@ -90,6 +90,12 @@ app.get('/home',verifyUser,(req,res)=>{
         res.status(500).json("Internal server error");
       });
   });
+
+app.post('/logout',(req,res)=>{
+  res.clearCookie('token');
+  res.json('Logged out successfully!');
+ });
+
  
 app.listen(4507,()=>{
     console.log("Server is running on http://127.0.0.1:4507");
