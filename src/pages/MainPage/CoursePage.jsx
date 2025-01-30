@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './course.css';
 
-const API_KEY = 'AIzaSyDPv0_vP32w4vUJ2qwSO0l1m-BL-S20DrE';
+const API_KEY = 'AIzaSyDw9Xp4oJEnDNP-hn5BjQ7-xgxbgXYtB2c';
 const DEFAULT_SEARCH_TERMS = [
   'javascript programming tutorial',
   'react js tutorial',
