@@ -12,6 +12,7 @@ import Ques from '../pages/MainPage/QuizPage/ques.jsx';
 import ChatRoom from '../pages/MainPage/chatroom/ChatRoom.jsx';
 import ProtectedRoute from './ProtectedRoute.jsx';
 import VideoDetails from '../pages/MainPage/VideoDetails.jsx';
+import Logout from '../pages/LoginPage/Logout.jsx';
 
 const Routers = () => {
   return (
@@ -63,7 +64,14 @@ const Routers = () => {
             <Ques />
           </ProtectedRoute>
         } />
+
+<Route path="/logout" element={
+          <ProtectedRoute>
+            <Logout />
+          </ProtectedRoute>
+        } />
   </Routes>
+  
   );
 };
 
