@@ -38,7 +38,7 @@ const Routers = () => {
           </ProtectedRoute>
         } />
 
-<Route path="/home/course/video/:videoID" element={
+<Route path="/home/course/video/:videoId" element={
           <ProtectedRoute>
             <VideoDetails />
           </ProtectedRoute>

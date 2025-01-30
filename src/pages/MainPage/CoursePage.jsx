@@ -1,8 +1,14 @@
-import { useState,useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import './login.css';
+import './course.css';
 
-const API_KEY = 'AIzaSyDPv0_vP32w4vUJ2qwSO0l1m-BL-S20DrE';  
+const API_KEY = 'AIzaSyDPv0_vP32w4vUJ2qwSO0l1m-BL-S20DrE';
+const DEFAULT_SEARCH_TERMS = [
+  'javascript programming tutorial',
+  'react js tutorial',
+  'python programming',
+  'web development tutorial'
+];
 
 function YouTubeVideoSearch() {
   const [query, setQuery] = useState('');
@@ -11,18 +17,13 @@ function YouTubeVideoSearch() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const fetchYouTubeVideos = useCallback(async () => {
-    if (!query.trim()) {
-      setError('Please enter a search query');
-      return;
-    }
-
+  const fetchYouTubeVideos = useCallback(async (searchQuery) => {
     setLoading(true);
     setError(null);
 
     try {
       const response = await fetch(
-        `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(query)}&type=video&maxResults=100&key=${API_KEY}`
+        `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(searchQuery)}&type=video&maxResults=100&key=${API_KEY}`
       );
 
       if (!response.ok) {
@@ -30,15 +31,15 @@ function YouTubeVideoSearch() {
       }
 
       const data = await response.json();
-      
+
       // Fetch additional video details to get view count
       const videoIds = data.items.map(item => item.id.videoId).join(',');
       const detailsResponse = await fetch(
-       ` https://www.googleapis.com/youtube/v3/videos?part=statistics&id=${videoIds}&key=${API_KEY}`
+        `https://www.googleapis.com/youtube/v3/videos?part=statistics&id=${videoIds}&key=${API_KEY}`
       );
 
       const detailsData = await detailsResponse.json();
-      
+
       // Merge snippet and statistics
       const enrichedVideos = data.items.map(video => {
         const stats = detailsData.items.find(
@@ -54,11 +55,27 @@ function YouTubeVideoSearch() {
     } finally {
       setLoading(false);
     }
-  }, [query, API_KEY]);
+  }, []);
+
+  // Load default programming videos on component mount
+  useEffect(() => {
+    const randomTerm = DEFAULT_SEARCH_TERMS[Math.floor(Math.random() * DEFAULT_SEARCH_TERMS.length)];
+    fetchYouTubeVideos(randomTerm);
+  }, [fetchYouTubeVideos]);
+
+  const handleSearch = () => {
+    if (!query.trim()) {
+      // If search is empty, fetch random programming videos
+      const randomTerm = DEFAULT_SEARCH_TERMS[Math.floor(Math.random() * DEFAULT_SEARCH_TERMS.length)];
+      fetchYouTubeVideos(randomTerm);
+    } else {
+      fetchYouTubeVideos(query);
+    }
+  };
 
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
-      fetchYouTubeVideos();
+      handleSearch();
     }
   };
 
@@ -67,58 +84,39 @@ function YouTubeVideoSearch() {
   };
 
   return (
-    <div className="container mx-auto p-4 max-w-2xl">
-      <div className="search-container mb-4 flex">
+    <div className="youtube-search">
+      <div className="search-container">
         <input
           type="text"
           placeholder="Search YouTube Videos"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          onKeyPress ={handleKeyPress}
-          className="flex-grow p-2 border rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          onKeyPress={handleKeyPress}
         />
-        <button
-          onClick={fetchYouTubeVideos}
-          disabled={loading}
-          className="bg-blue-500 text-white p-2 rounded-r-md hover:bg-blue-600 disabled:opacity-50"
-        >
+        <button onClick={handleSearch} disabled={loading}>
           {loading ? 'Searching...' : 'Search'}
         </button>
       </div>
 
-      {error && (
-        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-          {error}
-        </div>
-      )}
+      {error && <div className="alert">{error}</div>}
+      {loading && <div className="loading">Loading videos...</div>}
 
-      {loading && (
-        <div className="text-center text-gray-500">Loading videos...</div>
-      )}
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid">
         {videos.map((video) => (
-          <div
-            key={video.id.videoId}
-            onClick={() => handleVideoClick(video)}
-            className="cursor-pointer hover:shadow-lg transition-shadow duration-300 rounded-lg overflow-hidden"
+          <div 
+            key={video.id.videoId} 
+            onClick={() => handleVideoClick(video)} 
+            className="video-item"
           >
-            <img
-              src={video.snippet.thumbnails.medium.url}
-              alt={video.snippet.title}
-              className="w-full h-48 object-cover"
+            <img 
+              src={video.snippet.thumbnails.medium.url} 
+              alt={video.snippet.title} 
             />
-            <div className="p-3">
-              <h3 className="font-bold text-sm line-clamp-2">
-                {video.snippet.title}
-              </h3>
-              <p className="text-xs text-gray-600">
-                {video.snippet.channelTitle}
-              </p>
+            <div className="video-details">
+              <h3>{video.snippet.title}</h3>
+              <p>{video.snippet.channelTitle}</p>
               {video.statistics?.viewCount && (
-                <p className="text-xs text-gray-500">
-                  {parseInt(video.statistics.viewCount).toLocaleString()} views
-                </p>
+                <p>{parseInt(video.statistics.viewCount).toLocaleString()} views</p>
               )}
             </div>
           </div>

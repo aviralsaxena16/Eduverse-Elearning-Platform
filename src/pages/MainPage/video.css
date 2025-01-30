@@ -1,0 +1,146 @@
+/* Container */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio (9/16 * 100) */
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Video Title */
+.title {
+  font-size: 22px;
+  font-weight: bold;
+  color: #066466;
+  margin-bottom: 10px;
+}
+
+/* Channel Info */
+.channel-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid #6A2B56;
+}
+
+.channel-info span {
+  font-size: 18px;
+  font-weight: bold;
+  color: #6A2B56;
+}
+
+/* Video Metadata */
+.vedio-text {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 15px;
+  display: flex;
+  gap: 20px;
+}
+
+/* Description */
+.video-description {
+  background: rgba(6, 100, 102, 0.05);
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #333;
+  line-height: 1.5;
+}
+
+/* Buttons */
+.video-actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.video-actions button {
+  flex: 1;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+/* Like Button */
+.like {
+  background: #066466;
+  color: white;
+}
+
+.like:hover {
+  background: #044C4C;
+}
+
+/* Dislike Button */
+.dislike {
+  background: #6A2B56;
+  color: white;
+}
+
+.dislike:hover {
+  background: #552243;
+}
+
+/* Share Button */
+.share {
+  background: #DEB041;
+  color: white;
+}
+
+.share:hover {
+  background: #B38A35;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .video-container iframe {
+    height: 300px;
+  }
+
+  .title {
+    font-size: 18px;
+  }
+
+  .image {
+    width: 40px;
+    height: 40px;
+  }
+
+  .channel-info span {
+    font-size: 16px;
+  }
+
+  .video-actions {
+    flex-direction: column;
+  }
+}
