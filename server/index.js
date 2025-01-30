@@ -10,7 +10,7 @@ import jwt from 'jsonwebtoken';
 const app = express();
 app.use(express.json());
 app.use(cors({
-  origin: 'http://localhost:5173', // Ensure this matches your frontend URL
+  origin: 'http://localhost:5174', // Ensure this matches your frontend URL
   methods: ['GET', 'POST'],
   credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization']
