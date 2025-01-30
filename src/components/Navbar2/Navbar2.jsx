@@ -20,14 +20,14 @@ const Navbar2 = () => {
           <li onClick={toggleSidebar} aria-label="Toggle Sidebar" className='bars'>
             <FaBars />
           </li>
-          <li className="search-container">
+          {/* <li className="search-container">
             <MdSearch className="search-icon" />
             <input
               type="text"
               placeholder="Search"
               className="search-bar"
             />
-          </li>
+          </li> */}
           <li className='home'><HiHome /></li>
           <li className='profile'><FaUser /></li>
         </ul>
