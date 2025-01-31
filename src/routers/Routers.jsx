@@ -13,7 +13,8 @@ import ChatRoom from '../pages/MainPage/chatroom/ChatRoom.jsx';
 import ProtectedRoute from './ProtectedRoute.jsx';
 import VideoDetails from '../pages/MainPage/VideoDetails.jsx';
 import Logout from '../pages/LoginPage/Logout.jsx';
-
+import Game from '../pages/Game/Game.jsx';
+import Game_H1 from '../pages/Game/Game_H1.jsx';
 const Routers = () => {
   return (
     <Routes>
@@ -49,11 +50,6 @@ const Routers = () => {
             <ChatRoom />
           </ProtectedRoute>
         } />
-    <Route path="/home/games" element={
-          <ProtectedRoute>
-            <GamePage />
-          </ProtectedRoute>
-        } />
     <Route path="/home/quiz" element={
           <ProtectedRoute>
             <QuizPage />
@@ -70,7 +66,18 @@ const Routers = () => {
             <Logout />
           </ProtectedRoute>
         } />
+<Route path="/home/games" element={
+          <ProtectedRoute>
+            <Game />
+          </ProtectedRoute>
+        } />
+      <Route path="/home/games/rock-paper-scissors" element={
+          <ProtectedRoute>
+            <Game_H1 />
+          </ProtectedRoute>
+        } /> 
   </Routes>
+  
   
   );
 };
