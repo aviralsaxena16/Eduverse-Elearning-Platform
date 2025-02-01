@@ -13,8 +13,9 @@ import ChatRoom from '../pages/MainPage/chatroom/ChatRoom.jsx';
 import ProtectedRoute from './ProtectedRoute.jsx';
 import VideoDetails from '../pages/MainPage/VideoDetails.jsx';
 import Logout from '../pages/LoginPage/Logout.jsx';
-import Game from '../pages/Game/Game.jsx';
 import Game_H1 from '../pages/Game/Game_H1.jsx';
+import Tictac from '../pages/Game/tictac.jsx';
+
 const Routers = () => {
   return (
     <Routes>
@@ -68,12 +69,18 @@ const Routers = () => {
         } />
 <Route path="/home/games" element={
           <ProtectedRoute>
-            <Game />
+            <GamePage />
           </ProtectedRoute>
         } />
       <Route path="/home/games/rock-paper-scissors" element={
           <ProtectedRoute>
             <Game_H1 />
+          </ProtectedRoute>
+        } /> 
+
+<Route path="/home/games/tictac" element={
+          <ProtectedRoute>
+            <Tictac />
           </ProtectedRoute>
         } /> 
   </Routes>

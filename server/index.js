@@ -10,7 +10,7 @@ import jwt from 'jsonwebtoken';
 const app = express();
 app.use(express.json());
 app.use(cors({
-  origin: 'http://localhost:5173', // Ensure this matches your frontend URL
+  origin: 'http://localhost:5174', // Ensure this matches your frontend URL
   methods: ['GET', 'POST'],
   credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization']
@@ -97,6 +97,22 @@ app.post('/logout',(req,res)=>{
  });
 
  
+
+function bestmove(board){
+    const available = board.map((cell,i)=>cell===''?i:null).filter((cell)=>cell!==null)
+    if(available.length===0) return null
+    let n=available.length
+    return available[Math.floor(Math.random()*available.length)]
+}
+
+app.post('/move', (req, res) => {
+  const { board } = req.body;
+  const aiMove = bestmove(board);
+  res.json({ move: aiMove });
+});
+
+
+
 app.listen(4507,()=>{
     console.log("Server is running on http://127.0.0.1:4507");
 });

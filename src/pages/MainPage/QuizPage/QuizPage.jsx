@@ -35,17 +35,16 @@ const QuizPage = () => {
   ]
   
   return (
-    <div>
-      <h1>Quiz Page</h1>
-      <div className="container">
-        {products.map(product => (
-          <div className="cardd" onClick={()=>navigate(`/quiz/${product.id}`)}>
-          <Card key={product.id} title={product.title} url={product.url} id={product.id} />
-            </div>
-        ))}
-      </div>
-  
+    <div className="quiz-page">
+    <h1>Quiz Page</h1>
+    <div className="container">
+      {products.map(product => (
+        <div className="cardd" key={product.id} onClick={() => navigate(`/quiz/${product.id}`)}>
+          <Card title={product.title} url={product.url} id={product.id} />
+        </div>
+      ))}
     </div>
+  </div>
   )
 }
 
