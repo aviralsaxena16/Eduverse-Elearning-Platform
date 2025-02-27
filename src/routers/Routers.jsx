@@ -19,7 +19,6 @@ import Tictac from '../pages/Game/tictac.jsx';
 const Routers = () => {
   return (
     <Routes>
-    {/* Public Routes */}
     <Route path="/" element={<LandingPage />} />
     <Route path="/login" element={<Login />} />
     <Route path="/register" element={<Signup />} />
