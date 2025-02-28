@@ -118,6 +118,7 @@ app.get('/home',verifyUser,(req,res)=>{
         let user = await User.findOne({ email });
 
         if (!user) {
+          console.log(picture);
             user = new User({
                 name,
                 email,
