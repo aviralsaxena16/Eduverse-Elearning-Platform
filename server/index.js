@@ -5,10 +5,18 @@ import User from './models/User.js';
 import bcrypt from 'bcrypt';
 import cookieParser from 'cookie-parser';
 import jwt from 'jsonwebtoken';
+import { OAuth2Client } from 'google-auth-library';
 
+// Constants
+const GOOGLE_CLIENT_ID = "1048064892245-ru5mnl225peivhp9emsvhlj6qum1oo0m.apps.googleusercontent.com";
+const JWT_SECRET = "Its Alright";
 
 const app = express();
 app.use(express.json());
+
+
+const client = new OAuth2Client(GOOGLE_CLIENT_ID);
+
 app.use(cors({
   origin: 'http://localhost:5174', // Ensure this matches your frontend URL
   methods: ['GET', 'POST'],
@@ -90,6 +98,65 @@ app.get('/home',verifyUser,(req,res)=>{
         res.status(500).json("Internal server error");
       });
   });
+
+
+  app.post('/auth/google/callback', async (req, res) => {
+    try {
+        const { token } = req.body;      
+        if (!token) {
+            return res.status(400).json({ success: false, message: "Token is required" });
+        }
+        
+        const ticket = await client.verifyIdToken({
+            idToken: token,
+            audience: GOOGLE_CLIENT_ID
+        });
+        
+        const payload = ticket.getPayload();
+        const { name, email, picture } = payload;
+
+        let user = await User.findOne({ email });
+
+        if (!user) {
+            user = new User({
+                name,
+                email,
+                googleId: payload.sub,
+                picture,
+                password: ""
+            });
+            await user.save();
+        }
+
+        // Use the same JWT_SECRET as other routes
+        const authToken = jwt.sign(
+            { id: user._id }, 
+            JWT_SECRET,
+            { expiresIn: '1h' }
+        );
+
+        res.cookie('token', authToken, { httpOnly: true, secure: false });
+        res.json({
+            success: true,
+            token: authToken,
+            user: {
+                id: user._id,
+                name: user.name,
+                email: user.email,
+                picture: user.picture
+            }
+        });
+            
+    } catch (error) {
+        console.error("Google Auth Error:", error);
+        res.status(400).json({ 
+            success: false, 
+            message: "Google login failed",
+            error: error.message 
+        });
+    }
+});
+
 
 app.post('/logout',(req,res)=>{
   res.clearCookie('token');

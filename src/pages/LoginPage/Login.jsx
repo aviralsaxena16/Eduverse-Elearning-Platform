@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import "./Login.css";
 import logo from '../../assets/logo.png'
 import { useAuth } from "../../context/context.jsx";
+import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -48,7 +49,26 @@ const Login = () => {
     }
   };
 
+
+
+  const handleGoogleLoginSuccess = async (response) => {
+    try {
+        const res = await axios.post('http://localhost:4507/auth/google/callback', { token: response.credential });
+        if (res.data.success) {
+            alert('Google Login Successful');
+            login();
+            navigate("/home");
+        } else {
+            alert('Google Login Failed');
+        }
+    } catch (error) {
+        console.error('Google Login Error:', error);
+    }
+};
+
+
   return (
+    <GoogleOAuthProvider clientId="1048064892245-ru5mnl225peivhp9emsvhlj6qum1oo0m.apps.googleusercontent.com">
     <div className="login-page">
       <div className="login-wrapper">
         {/* Left side - Login form */}
@@ -119,6 +139,12 @@ const Login = () => {
                   "Sign In"
                 )}
               </button>
+              <div className="google-login">
+                                <GoogleLogin 
+                                    onSuccess={handleGoogleLoginSuccess} 
+                                    onError={() => alert('Google Login Failed')} 
+                                />
+              </div>
             </form>
             
             <div className="register-section">
@@ -136,6 +162,7 @@ const Login = () => {
         </div>
       </div>
     </div>
+    </GoogleOAuthProvider>
   );
 };
 
