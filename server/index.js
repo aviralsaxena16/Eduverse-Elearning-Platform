@@ -26,10 +26,9 @@ app.use(cors({
 app.use(cookieParser());
 
 
-await mongoose.connect('mongodb://127.0.0.1:27017/eduverse')
-.then(console.log("Connect"))
- .catch(err => console.log(err));
-
+await mongoose.connect('mongodb+srv://Aviral:aviral1947%40@eduversecluster.i3xl8.mongodb.net?retryWrites=true&w=majority&appName=EduverseCluster')
+.then(() => console.log("Connected to database"))
+.catch(err => console.log(err));
 
 const verifyUser=(req,res,next)=>{
   const token = req.cookies.token;
