@@ -13,15 +13,20 @@ const JWT_SECRET = "Its Alright";
 
 const app = express();
 app.use(express.json());
-
+// app.use((req, res, next) => {
+//   console.log('Cookies:', req.cookies);
+//   console.log('Token:', req.cookies.token);
+//   next();
+// });
 
 const client = new OAuth2Client(GOOGLE_CLIENT_ID);
 
 app.use(cors({
-  origin: 'http://localhost:5174', // Ensure this matches your frontend URL
-  methods: ['GET', 'POST','PUT'],
+  origin: 'http://localhost:5174',
+  methods: ['GET', 'POST', 'PUT'],
   credentials: true,
-  allowedHeaders: ['Content-Type', 'Authorization']
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  exposedHeaders: ['set-cookie']
 }));
 app.use(cookieParser());
 
@@ -30,17 +35,25 @@ await mongoose.connect('mongodb+srv://Aviral:aviral1947%40@eduversecluster.i3xl8
 .then(() => console.log("Connected to database"))
 .catch(err => console.log(err));
 
-const verifyUser=(req,res,next)=>{
+const verifyUser = (req, res, next) => {
   const token = req.cookies.token;
-  if (!token) return res.status(401).json({ message: 'No token, authorization denied' });
-  else{
-    jwt.verify(token,'Its Alright',(err,user)=>{
-      if(err) return res.status(403).json({ message: 'Token is not valid' });
-      req.user = user;
-      next();
-    })
+  console.log('Token received:', token); // Debug: log the token
+
+  if (!token) {
+    console.log('No token found'); // Debug: log when no token is present
+    return res.status(401).json({ message: 'No token, authorization denied' });
   }
-}
+  
+  jwt.verify(token, JWT_SECRET, (err, decoded) => {
+    if (err) {
+      console.log('Token verification error:', err); // Debug: log verification errors
+      return res.status(403).json({ message: 'Token is not valid' });
+    }
+    
+    console.log('Decoded token:', decoded); // Debug: log decoded token
+    req.user = decoded;
+    next();
+  })};
 
 
 
@@ -82,27 +95,38 @@ app.get('/home',verifyUser,(req,res)=>{
           bcrypt.compare(password, user.password)
             .then(isMatch => {
               if (isMatch) {
-                const token = jwt.sign({ email: user.email }, 'Its Alright', { expiresIn: '1d' });
-                res.cookie('token', token, { httpOnly: true, secure: false });
-                res.json("Login successful!");
+                const token = jwt.sign(
+                  { email: user.email, id: user._id }, // Make sure this matches what we check in profile
+                  'Its Alright', 
+                  { expiresIn: '1d' }
+                );
+                res.cookie('token', token, {
+                  httpOnly: true,
+                  secure: false, // Set to true in production with HTTPS
+                  sameSite: 'lax',
+                  maxAge: 24 * 60 * 60 * 1000 // 1 day
+                });
+                res.json({
+                  success: true,
+                  message: "Login successful!"
+                });
               } else {
-                res.json("Wrong password");
+                res.status(401).json({ success: false, message: "Wrong password" });
               }
             })
             .catch(err => {
               console.error("Error comparing passwords:", err);
-              res.status(500).json("Internal server error");
+              res.status(500).json({ success: false, message: "Internal server error" });
             });
         } else {
-          res.json("No records found!");
+          res.status(404).json({ success: false, message: "No records found!" });
         }
       })
       .catch(err => {
         console.error("Error finding user:", err);
-        res.status(500).json("Internal server error");
+        res.status(500).json({ success: false, message: "Internal server error" });
       });
   });
-
 
   app.post('/auth/google/callback', async (req, res) => {
     try {
@@ -169,8 +193,14 @@ app.post('/logout',(req,res)=>{
  });
 
  
- app.put('/home/profile', async (req, res) => {
+ app.put('/home/profile', verifyUser, async (req, res) => {
   try {
+
+    // Ensure we have a valid user ID
+    if (!req.user || !req.user.id) {
+      return res.status(401).json({ message: "User ID not found in token" });
+    }
+
     const updates = {};
     const allowedFields = ["dob", "institute", "githubLink", "skills", "about"];
 
@@ -182,10 +212,10 @@ app.post('/logout',(req,res)=>{
     });
 
     const updatedUser = await User.findByIdAndUpdate(
-      req.user.id,
+      req.user.id, // Use req.user.id directly
       updates,
       { new: true, runValidators: true }
-    ).select("-password"); // Exclude password from response
+    ).select("-password");
 
     if (!updatedUser) {
       return res.status(404).json({ message: "User not found" });
@@ -194,21 +224,30 @@ app.post('/logout',(req,res)=>{
     res.json({ success: true, user: updatedUser });
   } catch (error) {
     console.error("Error updating profile:", error);
-    res.status(500).json({ message: "Internal server error" });
+    res.status(500).json({ 
+      message: "Internal server error",
+      errorDetails: error.message 
+    });
   }
-});
-
+});// Updated GET route for profile
 app.get('/home/profile', verifyUser, async (req, res) => {
   try {
-    const user = await User.findById(req.user.id).select('-password');
+    // Log the user object from the token to debug
+    console.log('User from token:', req.user);
+    
+    // Use req.user.id or req.user._id depending on how it's signed in token
+    const user = await User.findById(req.user.id || req.user._id)
+      .select('-password');
+    
     if (!user) {
       return res.status(404).json({ message: "User not found" });
-  }
-  console.log("Returning User Data:", user); // Log user data
+    }
+    
+    console.log("Returning User Data:", user);
     res.json({ success: true, user });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({message:"Internal server error" });
+    console.error("Error details:", error);
+    res.status(500).json({ message: "Internal server error" });
   }
 });
 

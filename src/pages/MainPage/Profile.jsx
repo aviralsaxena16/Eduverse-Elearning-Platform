@@ -18,18 +18,25 @@ const Profile = () => {
 
   const fetchProfile = async () => {
     try {
-      const response = await fetch("http://localhost:4507/home/profile", {
-        method: "GET",
-        credentials: "include",
+      fetch('http://localhost:4507/home/profile', {
+        method: 'GET',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(res => res.json())
+      .then(data => {
+        console.log('Profile Response:', data);
+        if (!data.success) {
+          throw new Error(data.message);
+        }
+        return data;
+      })
+      .catch(err => {
+        console.error('Error fetching profile:', err);
+        throw err;
       });
-  
-      const data = await response.json();
-      console.log("Fetched Profile Data:", data);
-      if (response.ok && data.user) {
-        setUserProfile(data.user);
-      } else {
-        console.error("Error fetching profile:", data.message || "Unknown error");
-      }
     } catch (error) {
       console.error("Error:", error);
     }
