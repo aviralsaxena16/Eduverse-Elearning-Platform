@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from "react";
-
+import './Profile.css'
 
 const Profile = () => {
   const [userProfile, setUserProfile] = useState({
@@ -83,70 +83,84 @@ const Profile = () => {
 
   return (
     <div className="profile-container">
-      <h2>User Profile</h2>
-      <button onClick={() => setIsEditing(!isEditing)}>
-        {isEditing ? "Cancel" : "EDIT"}
-      </button>
-
-      <div className="profile-details">
-        <label>Date of Birth:</label>
-        {isEditing ? (
-          <input
-            type="date"
-            value={userProfile.dob}
-            onChange={(e) => setUserProfile({ ...userProfile, dob: e.target.value })}
-          />
-        ) : (
-          <p>{userProfile.dob || "null"}</p>
-        )}
-
-        <label>Institute:</label>
-        {isEditing ? (
-          <input
-            type="text"
-            value={userProfile.institute}
-            onChange={(e) => setUserProfile({ ...userProfile, institute: e.target.value })}
-          />
-        ) : (
-          <p>{userProfile.institute || "null"}</p>
-        )}
-
-        <label>GitHub:</label>
-        {isEditing ? (
-          <input
-            type="text"
-            value={userProfile.githubLink}
-            onChange={(e) => setUserProfile({ ...userProfile, githubLink: e.target.value })}
-          />
-        ) : (
-          <p>{userProfile.githubLink || "null"}</p>
-        )}
-
-        <label>Skills:</label>
-        {isEditing ? (
-          <input
-            type="text"
-            value={userProfile.skills.join(", ")}
-            onChange={(e) => setUserProfile({ ...userProfile, skills: e.target.value.split(",") })}
-          />
-        ) : (
-          <p>{userProfile.skills.length >0 ? userProfile.skills.join(", ") : "null"}</p>
-        )}
-
-        <label>About:</label>
-        {isEditing ? (
-          <textarea
-            value={userProfile.about || ""}
-            onChange={(e) => setUserProfile({ ...userProfile, about: e.target.value })}
-          />
-        ) : (
-          <p>{userProfile.about || "null"}</p>
-        )}
+      <div className="profile-header">
+        <h2>User Profile</h2>
       </div>
 
-      {isEditing && <button onClick={handleSave}>Save</button>}
+      <div className="profile-details">
+        <button 
+          className="edit-button" 
+          onClick={() => setIsEditing(!isEditing)}
+        >
+          {isEditing ? "Cancel" : "Edit Profile"}
+        </button>
+
+        <div>
+          <label>Date of Birth:</label>
+          {isEditing ? (
+            <input
+              type="date"
+              value={userProfile.dob}
+              onChange={(e) => setUserProfile({ ...userProfile, dob: e.target.value })}
+            />
+          ) : (
+            <p>{userProfile.dob || "Not specified"}</p>
+          )}
+
+          <label>Institute:</label>
+          {isEditing ? (
+            <input
+              type="text"
+              value={userProfile.institute}
+              onChange={(e) => setUserProfile({ ...userProfile, institute: e.target.value })}
+            />
+          ) : (
+            <p>{userProfile.institute || "Not specified"}</p>
+          )}
+
+          <label>GitHub:</label>
+          {isEditing ? (
+            <input
+              type="text"
+              value={userProfile.githubLink}
+              onChange={(e) => setUserProfile({ ...userProfile, githubLink: e.target.value })}
+            />
+          ) : (
+            <p>{userProfile.githubLink || "Not specified"}</p>
+          )}
+
+          <label>Skills:</label>
+          {isEditing ? (
+            <input
+              type="text"
+              value={userProfile.skills.join(", ")}
+              onChange={(e) => setUserProfile({ ...userProfile, skills: e.target.value.split(",") })}
+            />
+          ) : (
+            <p>{userProfile.skills.length > 0 ? userProfile.skills.join(", ") : "No skills specified"}</p>
+          )}
+
+          <label>About:</label>
+          {isEditing ? (
+            <textarea
+              value={userProfile.about || ""}
+              onChange={(e) => setUserProfile({ ...userProfile, about: e.target.value })}
+            />
+          ) : (
+            <p>{userProfile.about || "No description"}</p>
+          )}
+        </div>
+
+        {isEditing && (
+          <button 
+            className="save-button" 
+            onClick={handleSave}
+          >
+            Save Profile
+          </button>
+        )}
+      </div>
     </div>
-  );
-};
+  );};
 
 export default Profile;
