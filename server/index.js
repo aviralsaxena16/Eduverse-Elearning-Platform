@@ -232,17 +232,16 @@ app.post('/logout',(req,res)=>{
 });// Updated GET route for profile
 app.get('/home/profile', verifyUser, async (req, res) => {
   try {
-    // Log the user object from the token to debug
+    
     console.log('User from token:', req.user);
     
-    // Use req.user.id or req.user._id depending on how it's signed in token
+    
     const user = await User.findById(req.user.id || req.user._id)
       .select('-password');
     
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-    
     console.log("Returning User Data:", user);
     res.json({ success: true, user });
   } catch (error) {

@@ -31,7 +31,13 @@ const Profile = () => {
         if (!data.success) {
           throw new Error(data.message);
         }
-        return data;
+      setUserProfile({
+        dob:data.user.dob,
+        institute:data.user.institute,
+        githubLink:data.user.githubLink,
+        skills:data.user.skills,
+        about:data.user.about,
+      });
       })
       .catch(err => {
         console.error('Error fetching profile:', err);
