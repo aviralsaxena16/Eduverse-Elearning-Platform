@@ -15,7 +15,7 @@ import VideoDetails from '../pages/MainPage/VideoDetails.jsx';
 import Logout from '../pages/LoginPage/Logout.jsx';
 import Game_H1 from '../pages/Game/Game_H1.jsx';
 import Tictac from '../pages/Game/tictac.jsx';
-
+import Profile from '../pages/MainPage/Profile.jsx';
 const Routers = () => {
   return (
     <Routes>
@@ -82,6 +82,11 @@ const Routers = () => {
             <Tictac />
           </ProtectedRoute>
         } /> 
+        <Route path="/home/profile" element={
+          <ProtectedRoute>
+           <Profile/>
+          </ProtectedRoute>
+        } />
   </Routes>
   
   

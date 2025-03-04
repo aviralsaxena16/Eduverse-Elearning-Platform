@@ -5,7 +5,7 @@ import { FaUser } from 'react-icons/fa';
 import { MdSearch } from 'react-icons/md';
 import Sidebar from '../Side/Sidebar';
 import { NavLink } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
 import './Navbar2.css';
 
 const Navbar2 = () => {
@@ -29,7 +29,11 @@ const Navbar2 = () => {
             />
           </li> */}
           <li className='home'><HiHome /></li>
-          <li className='profile'><FaUser /></li>
+          <li className='profile'>
+            <Link to="/home/profile">
+            <FaUser />
+            </Link>
+          </li>
         </ul>
       </nav>
       <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />

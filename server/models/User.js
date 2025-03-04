@@ -19,6 +19,27 @@ const userSchema = new mongoose.Schema({
     picture: {  // Add this field to store the profile picture
         type: String,
         default: ''
+    },
+   
+    dob: {  
+        type: Date,
+        default: null
+    },
+    institute: {  
+        type: String,
+        default: null
+    },
+    githubLink: {  
+        type: String,
+        default: null
+    },
+    skills: {  
+        type: [String],
+        default: []
+    },
+    about: {  
+        type: String,
+        default: null
     }
 }, { timestamps: true });
 

@@ -19,7 +19,7 @@ const client = new OAuth2Client(GOOGLE_CLIENT_ID);
 
 app.use(cors({
   origin: 'http://localhost:5174', // Ensure this matches your frontend URL
-  methods: ['GET', 'POST'],
+  methods: ['GET', 'POST','PUT'],
   credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
@@ -41,6 +41,11 @@ const verifyUser=(req,res,next)=>{
     })
   }
 }
+
+
+
+
+
 
 app.get('/home',verifyUser,(req,res)=>{
   return res.send('Success')
@@ -164,12 +169,57 @@ app.post('/logout',(req,res)=>{
  });
 
  
+ app.put('/home/profile', async (req, res) => {
+  try {
+    const updates = {};
+    const allowedFields = ["dob", "institute", "githubLink", "skills", "about"];
+
+    // Loop through the request body and only add valid fields to updates
+    allowedFields.forEach(field => {
+      if (req.body[field] !== undefined) {
+        updates[field] = req.body[field];
+      }
+    });
+
+    const updatedUser = await User.findByIdAndUpdate(
+      req.user.id,
+      updates,
+      { new: true, runValidators: true }
+    ).select("-password"); // Exclude password from response
+
+    if (!updatedUser) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.json({ success: true, user: updatedUser });
+  } catch (error) {
+    console.error("Error updating profile:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+app.get('/home/profile', verifyUser, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select('-password');
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+  }
+  console.log("Returning User Data:", user); // Log user data
+    res.json({ success: true, user });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({message:"Internal server error" });
+  }
+});
+
+
+
 
 function bestmove(board){
     const available = board.map((cell,i)=>cell===''?i:null).filter((cell)=>cell!==null)
     if(available.length===0) return null
     let n=available.length
-    return available[Math.floor(Math.random()*available.length)]
+    return available[Math.floor(Math.random()*n)]
 }
 
 app.post('/move', (req, res) => {
