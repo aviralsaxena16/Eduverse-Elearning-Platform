@@ -28,8 +28,8 @@ const Login = () => {
         { email, password },
         { withCredentials: true }
       );
-
-      if (result.data === "Login successful!") {
+      console.log(result);
+      if (result.data.message === "Login successful!") {
         login();
         console.log("Login successfully done");
         alert("Login Successfully Done");
