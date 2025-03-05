@@ -195,12 +195,12 @@ app.post('/logout',(req,res)=>{
  
  app.put('/home/profile', verifyUser, async (req, res) => {
   try {
-
+    
     // Ensure we have a valid user ID
     if (!req.user || !req.user.id) {
+      console.log(req)
       return res.status(401).json({ message: "User ID not found in token" });
     }
-
     const updates = {};
     const allowedFields = ["dob", "institute", "githubLink", "skills", "about"];
 
@@ -233,8 +233,8 @@ app.post('/logout',(req,res)=>{
 app.get('/home/profile', verifyUser, async (req, res) => {
   try {
     
-    console.log('User from token:', req.user);
-    
+    // console.log('User from token:', req.user);
+    // console.log(req)
     
     const user = await User.findById(req.user.id || req.user._id)
       .select('-password');
@@ -242,7 +242,7 @@ app.get('/home/profile', verifyUser, async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-    console.log("Returning User Data:", user);
+    // console.log("Returning User Data:", user);
     res.json({ success: true, user });
   } catch (error) {
     console.error("Error details:", error);
@@ -250,7 +250,26 @@ app.get('/home/profile', verifyUser, async (req, res) => {
   }
 });
 
+app.get('/home/profilePic', verifyUser, async (req, res) => {
+  try {
+      if (!req.user || (!req.user.id && !req.user._id)) {
+          return res.status(401).json({ success: false, message: "User not authenticated" });
+      }
 
+      const user = await User.findById(req.user.id || req.user._id);
+      if (!user) {
+          return res.status(404).json({ success: false, message: "User not found" });
+      }
+      console.log("Returning User ka  Data:", user);
+      // const profilePic = "https://lh3.googleusercontent.com/a/ACg8ocKkxjcPdmFFxV53tYOpWspO7bCAbRlGeCm97MZQ5TFgPVYOoQ=s96-c; // Provide default if no picture exists"
+      const profilePic = user.picture
+      res.json({ success: true, profilePic });
+  }
+  catch (error) {
+      console.error("Error retrieving profile picture:", error);
+      res.status(500).json({ success: false, message: "Internal server error" });
+  }
+});
 
 
 function bestmove(board){

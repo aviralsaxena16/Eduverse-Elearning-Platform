@@ -2,6 +2,8 @@
 import { useState, useEffect } from "react";
 import './Profile.css'
 
+import ProfilePic from "../Profile/ProfilePic";
+
 const Profile = () => {
   const [userProfile, setUserProfile] = useState({
     dob: "",
@@ -82,6 +84,8 @@ const Profile = () => {
   
 
   return (
+    <>
+      <ProfilePic />
     <div className="profile-container">
       <div className="profile-header">
         <h2>User Profile</h2>
@@ -161,6 +165,7 @@ const Profile = () => {
         )}
       </div>
     </div>
+    </>
   );};
 
 export default Profile;
