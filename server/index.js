@@ -31,10 +31,20 @@ app.use(cors({
 app.use(cookieParser());
 
 
-await mongoose.connect('mongodb+srv://Aviral:aviral1947%40@eduversecluster.i3xl8.mongodb.net?retryWrites=true&w=majority&appName=EduverseCluster')
-.then(() => console.log("Connected to database"))
-.catch(err => console.log(err));
-
+const connectDB = async () => {
+  try {
+    const conn = await mongoose.connect('mongodb+srv://Aviral:aviral1947%40@eduversecluster.i3xl8.mongodb.net?retryWrites=true&w=majority&appName=EduverseCluster', {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      serverSelectionTimeoutMS: 5000, // Timeout after 5s instead of 30s
+      socketTimeoutMS: 45000, // Close sockets after 45s of inactivity
+    });
+    console.log(`MongoDB Connected: ${conn.connection.host}`);
+  } catch (error) {
+    console.error('MongoDB connection error:', error);
+    process.exit(1);
+  }
+};
 const verifyUser = (req, res, next) => {
   const token = req.cookies.token;
   console.log('Token received:', token); // Debug: log the token
@@ -64,27 +74,31 @@ app.get('/home',verifyUser,(req,res)=>{
   return res.send('Success')
 })
 
- app.post('/register', (req, res) => {
-  const { name,email, password } = req.body;
-  
-  // Check if the user already exists
-  User.findOne({ email: email })
-    .then(user => {
-      if (user) {
-        res.json("Already registered");
-      } 
-      
-      else {
-        bcrypt.hash(password,10)
-         .then(hashedPassword => {
-        User.create({ name:name,email: email, password: hashedPassword})
-         .then(newUser => res.json(newUser))
-         .catch(err => console.log(err));
-
- }) }})
-    .catch(err => console.log(err));
-  })
-
+app.post('/register', async (req, res) => {
+  try {
+    const { name, email, password } = req.body;
+    
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json("Already registered");
+    }
+    
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser = await User.create({ 
+      name, 
+      email, 
+      password: hashedPassword 
+    });
+    
+    res.status(201).json(newUser);
+  } catch (error) {
+    console.error('Registration error:', error);
+    res.status(500).json({ 
+      error: "Registration failed", 
+      details: error.message 
+    });
+  }
+});
 
   app.post('/login', (req, res) => {
     const { email, password } = req.body;
@@ -287,6 +301,8 @@ app.post('/move', (req, res) => {
 
 
 
-app.listen(4507,()=>{
+connectDB().then(() => {
+  app.listen(4507, () => {
     console.log("Server is running on http://127.0.0.1:4507");
-});
+  });
+}).catch(err => console.log(err));

@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import "./Signup.css";
+import bg2 from '../../assets/bg2.jpg'
 
 const Signup = () => {
   const [name, setName] = useState("");
@@ -52,15 +53,19 @@ const Signup = () => {
     }
   };
 
+
+
   return (
     <div className="signup">
-      <h2>Sign Up</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="input">
+      <div className="signup-content">
+        <h2>Sign Up</h2>
+        <form onSubmit={handleSubmit}>
+          {/* All your form fields remain the same */}
+          <div className="input">
           <label htmlFor="name">
-            <strong>Name</strong>
-          </label>
-          <input
+             <strong>Name</strong>
+           </label>
+         <input
             type="text"
             id="name"
             placeholder="Enter your name"
@@ -96,15 +101,21 @@ const Signup = () => {
             minLength={6}
           />
         </div>
-        {error && <p className="error">{error}</p>}
-        <button type="submit" className="btn" disabled={loading}>
-          {loading ? "Signing Up..." : "Sign Up"}
-        </button>
-      </form>
-      <div className="link-container">
-        <p className="link">
-          Already have an account? <Link to="/login">Login</Link>
-        </p>
+          {/* Email and password fields remain the same */}
+          
+          {error && <p className="error">{error}</p>}
+          <button type="submit" className="btn" disabled={loading}>
+            {loading ? "Signing Up..." : "Sign Up"}
+          </button>
+        </form>
+        <div className="link-container">
+          <p className="link">
+            Already have an account? <Link to="/login">Login</Link>
+          </p>
+        </div>
+      </div>
+      <div className="signup-image">
+        
       </div>
     </div>
   );
