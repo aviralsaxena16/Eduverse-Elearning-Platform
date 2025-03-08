@@ -8,12 +8,10 @@
 }
 
 body, html {
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
   background: white;
   color: #333;
-  margin: 0; /* Remove default margins */
-  padding: 0; /* Remove default padding */
 }
 
 .quiz-page {

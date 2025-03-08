@@ -1,4 +1,4 @@
-import './Cards.css'
+import C
 const Card = ({ title, url, id }) => {
   return (
     <div className="card">
