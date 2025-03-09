@@ -6,10 +6,12 @@ import { useNavigate } from 'react-router-dom';
 
 const API_KEY = 'AIzaSyDw9Xp4oJEnDNP-hn5BjQ7-xgxbgXYtB2c';
 const DEFAULT_SEARCH_TERMS = [
-  'javascript programming tutorial',
-  'react js tutorial',
-  'python programming',
-  'web development tutorial'
+  'AI/Ml',
+  'javascript programming tutorial ',
+  'apna college videos',
+  'web development tutorial',
+  'Code with harry videos',
+  'college wallah videos'
 ];
 
 const MainPage = () => {
@@ -40,7 +42,7 @@ const MainPage = () => {
 
     try {
       const response = await fetch(
-        `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(searchQuery)}&type=video&maxResults=100&key=${API_KEY}`
+        `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(searchQuery)}&type=video&videoDuration=medium&maxResults=100&key=${API_KEY}`
       );
 
       if (!response.ok) {
