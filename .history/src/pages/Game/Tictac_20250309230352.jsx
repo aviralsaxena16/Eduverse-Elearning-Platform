@@ -76,7 +76,7 @@ const Tictac = () => {
           <span className="winner-message">
             {winner === 'Draw' ? "It's a Draw!" : `Winner: ${winner}`}
           </span>
-          <br/>
+          <br
           <button onClick={restartGame} className="restart-button">Restart</button>
         </div>
         )}

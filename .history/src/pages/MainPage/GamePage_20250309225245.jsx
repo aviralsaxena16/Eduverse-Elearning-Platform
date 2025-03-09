@@ -79,7 +79,7 @@ const GamePage = () => {
           flex: 1;
           max-width: 400px;
           cursor: pointer;
-          transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+          transition: transform 0.1s ease-in-out, box-shadow 0.1#5b4bc9s ease-in-out;
           border-radius: 15px;
           overflow: hidden;
           box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
@@ -101,7 +101,7 @@ const GamePage = () => {
         }
 
         .more-games h2 {
-          color: #5b4bc9;
+          color: #066466;
           font-size: 1.8rem;
         }
 

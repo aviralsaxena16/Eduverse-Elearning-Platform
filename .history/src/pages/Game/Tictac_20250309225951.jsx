@@ -6,7 +6,6 @@ const Tictac = () => {
   const [board, setBoard] = useState(Array(9).fill(''));
   const [turn, setTurn] = useState('X');
   const [winner, setWinner] = useState(null);
-  const [isUserTurn, setIsUserTurn] = useState(true);
 
   const winnercheck = (board) => {
     const winningCombinations = [
@@ -28,12 +27,11 @@ const Tictac = () => {
   };
 
   const handleClick = async (index) => {
-    if (!isUserTurn || board[index] || winner) return;
+    if (board[index] || winner) return;
 
     let newBoard = [...board];
     newBoard[index] = 'X';
     setBoard(newBoard);
-    setIsUserTurn(false);
 
     if (winnercheck(newBoard)) return;
     setTurn('O');
@@ -49,7 +47,6 @@ const Tictac = () => {
       } catch (error) {
         console.error('Error getting AI move:', error);
       }
-      setIsUserTurn(true);
     }, 1000); // AI waits for 1 sec
   };
 
@@ -57,7 +54,6 @@ const Tictac = () => {
     setBoard(Array(9).fill(''));
     setWinner(null);
     setTurn('X');
-    setIsUserTurn(true);
   };
 
   return (
@@ -66,19 +62,16 @@ const Tictac = () => {
         <h1 className="game-title">Tic-Tac-Toe <div className="game-subtitle">vs AI</div></h1>
         <div className="board-grid">
           {board.map((cell, i) => (
-            <button key={i} onClick={() => handleClick(i)} className={`cell ${cell}`} disabled={!isUserTurn || cell !== ''}>
+            <button key={i} onClick={() => handleClick(i)} className={`cell ${cell}`}>
               {cell}
             </button>
           ))}
         </div>
         {winner && (
-          <div className="winner-container">
-          <span className="winner-message">
+          <div className="winner-message">
             {winner === 'Draw' ? "It's a Draw!" : `Winner: ${winner}`}
-          </span>
-          <br/>
-          <button onClick={restartGame} className="restart-button">Restart</button>
-        </div>
+            <button onClick={restartGame} className="restart-button">Restart</button>
+          </div>
         )}
       </div>
     </div>

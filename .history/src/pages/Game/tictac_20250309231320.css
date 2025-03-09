@@ -1,12 +1,9 @@
 /* TicTac.css */
-.{
-  background:linear-gradient(135deg, #b9aff5 0%, #9388e6 50%, #5d4cb0 100%);
-}
 .game-container {
   min-height: 100vh;
   width: 100vw;
-  background: linear-gradient(135deg, #7c69f3 0%, #6d5ede 50%, #5d4cb0 100%);
- 
+  
+  background: linear-gradient(135deg, #5b4bc9 0%, #6A2B56 50%, #DEB041 100%);
   padding: 2rem;
   display: flex;
   flex-direction: column;

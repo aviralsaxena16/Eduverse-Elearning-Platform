@@ -1,6 +1,5 @@
 import Card from "../../components/Cards/Card";
 import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
 
 const GamePage = () => {
   const navigate = useNavigate();
@@ -17,20 +16,24 @@ const GamePage = () => {
 
       {/* Games Section */}
       <div className="game-grid">
-        {[ 
-          { title: "Tic Tac Toe", url: "https://images-cdn.ubuy.co.in/634e9673d2765619b765a602-sulobom-tic-tac-toe-board-game-tic-tac.jpg", path: "/home/games/tictac" },
-          { title: "Rock Paper Scissors", url: "https://play-lh.googleusercontent.com/Vj7-ZgkYSK0Lbxsbu4-3tI9J_rvUSrMxycN2WZknhFfEVr7aEl0ZhejD4z3rWzgNMqI=w526-h296-rw", path: "/home/games/rock-paper-scissors" }
-        ].map((game, index) => (
-          <motion.div
-            key={index}
-            className="game-card"
-            onClick={() => navigate(game.path)}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Card title={game.title} url={game.url} />
-          </motion.div>
-        ))}
+        <div
+          className="game-card"
+          onClick={() => navigate("/home/games/tictac")}
+        >
+          <Card
+            title="Tic Tac Toe"
+            url="https://images-cdn.ubuy.co.in/634e9673d2765619b765a602-sulobom-tic-tac-toe-board-game-tic-tac.jpg"
+          />
+        </div>
+        <div
+          className="game-card"
+          onClick={() => navigate("/home/games/rock-paper-scissors")}
+        >
+          <Card
+            title="Rock Paper Scissors"
+            url="https://play-lh.googleusercontent.com/Vj7-ZgkYSK0Lbxsbu4-3tI9J_rvUSrMxycN2WZknhFfEVr7aEl0ZhejD4z3rWzgNMqI=w526-h296-rw"
+          />
+        </div>
       </div>
 
       {/* More Games Section */}
@@ -45,7 +48,7 @@ const GamePage = () => {
           display: flex;
           flex-direction: column;
           align-items: center;
-          background: linear-gradient(135deg, #e3f2fd 0%, #fce4ec 100%);
+          background-color: #f4f4f4;
           padding: 40px 20px;
           text-align: center;
         }
@@ -58,7 +61,6 @@ const GamePage = () => {
           font-size: 2.8rem;
           font-weight: bold;
           color: #05445E;
-          text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         .game-subtitle {
@@ -77,16 +79,14 @@ const GamePage = () => {
 
         .game-card {
           flex: 1;
-          max-width: 400px;
+          max-width: 350px;
           cursor: pointer;
-          transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
-          border-radius: 15px;
-          overflow: hidden;
-          box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+          transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
         }
 
         .game-card:hover {
-          box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.2);
+          transform: scale(1.05);
+          box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
         }
 
         .more-games {
@@ -97,7 +97,6 @@ const GamePage = () => {
           box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
           width: 80%;
           max-width: 600px;
-          animation: fadeIn 1s ease-in-out;
         }
 
         .more-games h2 {
