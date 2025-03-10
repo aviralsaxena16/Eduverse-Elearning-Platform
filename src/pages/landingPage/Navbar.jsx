@@ -1,11 +1,14 @@
 
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
+import logo from '../../assets/Logo.png'
 
 const Navbar = () => {
   return (
     <nav className="navbar">
-      <div className="logo">EduVerse</div>
+      <div className="logo">
+        <img src={logo} className="img"/>
+          EduVerse</div>
       <ul className="nav-links">
         <li>
           <NavLink to="/login" className="nav-link" activeClassName="active">
