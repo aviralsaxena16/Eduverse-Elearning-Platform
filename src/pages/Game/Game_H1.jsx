@@ -1,5 +1,9 @@
 import { useState } from "react";
 import "./Game_H1.css";
+import rock from '../../assets/rock.png'
+import paper from '../../assets/paper.png'
+import scissor from '../../assets/scissor.png'
+
 const Game_H1 = () => {
   const [userScore, setUserScore] = useState(0);
   const [compScore, setCompScore] = useState(0);
@@ -38,16 +42,22 @@ const Game_H1 = () => {
       }
     }
   };
-
+  
   return (
     <div className="game-container">
       <h1 className="game-title">Rock, Paper, Scissors Game!</h1>
       <div className="choices-container">
-        {choices.map((choice) => (
-          <button key={choice} className="choice-button" onClick={() => playGame(choice)}>
-            <img src={`images/${choice}.png`} alt={choice} className="choice-image" />
+        
+          <button className="choice-button" onClick={() => playGame('rock')}>
+            <img src={rock} className="choice-image" />
           </button>
-        ))}
+          <button className="choice-button" onClick={() => playGame('paper')}>
+            <img src={paper} className="choice-image" />
+          </button>
+          <button className="choice-button" onClick={() => playGame('scissor')}>
+            <img src={scissor} className="choice-image" />
+          </button>
+        
       </div>
       <div className="score-container">
         <div className="score">
