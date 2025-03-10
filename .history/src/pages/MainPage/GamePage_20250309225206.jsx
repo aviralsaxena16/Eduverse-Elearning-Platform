@@ -101,7 +101,7 @@ const GamePage = () => {
         }
 
         .more-games h2 {
-          color: #066466;
+          color: #101d8a;
           font-size: 1.8rem;
         }
 
