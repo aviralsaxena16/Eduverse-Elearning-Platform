@@ -22,7 +22,7 @@ app.use(express.json());
 const client = new OAuth2Client(GOOGLE_CLIENT_ID);
 
 app.use(cors({
-  origin: ["http://localhost:5175"],
+  origin: 'http://localhost:5174',
   methods: ['GET', 'POST', 'PUT'],
   credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization'],
@@ -45,6 +45,7 @@ const connectDB = async () => {
     process.exit(1);
   }
 };
+
 const verifyUser = (req, res, next) => {
   const token = req.cookies.token;
   console.log('Token received:', token); // Debug: log the token

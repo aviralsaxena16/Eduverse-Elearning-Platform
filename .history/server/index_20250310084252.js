@@ -22,7 +22,7 @@ app.use(express.json());
 const client = new OAuth2Client(GOOGLE_CLIENT_ID);
 
 app.use(cors({
-  origin: ["http://localhost:5175"],
+  origin: 'http://localhost:5174',
   methods: ['GET', 'POST', 'PUT'],
   credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization'],
@@ -45,6 +45,23 @@ const connectDB = async () => {
     process.exit(1);
   }
 };
+import mongoose from "mongoose";
+
+const connectDB = async () => {
+  try {
+    await mongoose.connect('mongodb+srv://Aviral:aviral1947%40@eduversecluster.i3xl8.mongodb.net/?retryWrites=true&w=majority&appName=EduverseCluster', {
+      serverSelectionTimeoutMS: 5000, // Timeout after 5s instead of 30s
+      socketTimeoutMS: 45000, // Close sockets after 45s of inactivity
+    });
+    console.log("MongoDB Connected");
+  } catch (error) {
+    console.error("MongoDB Connection Error:", error);
+    process.exit(1);
+  }
+};
+
+export default connectDB;
+
 const verifyUser = (req, res, next) => {
   const token = req.cookies.token;
   console.log('Token received:', token); // Debug: log the token

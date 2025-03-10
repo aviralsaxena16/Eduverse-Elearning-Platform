@@ -22,7 +22,7 @@ app.use(express.json());
 const client = new OAuth2Client(GOOGLE_CLIENT_ID);
 
 app.use(cors({
-  origin: ["http://localhost:5175"],
+  origin: ['http://localhost:5174',"http://localhost:5175"],
   methods: ['GET', 'POST', 'PUT'],
   credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization'],
