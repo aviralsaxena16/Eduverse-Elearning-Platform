@@ -7,17 +7,26 @@ import cookieParser from 'cookie-parser';
 import jwt from 'jsonwebtoken';
 import { OAuth2Client } from 'google-auth-library';
 
+import multer from 'multer';
+import path from 'path'
+
 // Constants
 const GOOGLE_CLIENT_ID = "1048064892245-ru5mnl225peivhp9emsvhlj6qum1oo0m.apps.googleusercontent.com";
 const JWT_SECRET = "Its Alright";
 
 const app = express();
 app.use(express.json());
-// app.use((req, res, next) => {
-//   console.log('Cookies:', req.cookies);
-//   console.log('Token:', req.cookies.token);
-//   next();
-// });
+app.use('/uploads', express.static('uploads'))
+
+const storage = multer.diskStorage({
+  destination: "./uploads/",
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname)); // Filename with timestamp
+  },
+});
+
+const upload = multer({ storage: storage });
+
 
 const client = new OAuth2Client(GOOGLE_CLIENT_ID);
 
@@ -274,14 +283,39 @@ app.get('/home/profilePic', verifyUser, async (req, res) => {
       if (!user) {
           return res.status(404).json({ success: false, message: "User not found" });
       }
-      console.log("Returning User ka  Data:", user);
-      // const profilePic = "https://lh3.googleusercontent.com/a/ACg8ocKkxjcPdmFFxV53tYOpWspO7bCAbRlGeCm97MZQ5TFgPVYOoQ=s96-c; // Provide default if no picture exists"
+      // console.log("Returning User ka  Data:", user);
       const profilePic = user.picture
       res.json({ success: true, profilePic });
   }
   catch (error) {
       console.error("Error retrieving profile picture:", error);
       res.status(500).json({ success: false, message: "Internal server error" });
+  }
+});
+
+
+
+app.post("/home/upload-profile", verifyUser,upload.single("profilePic"), async (req, res) => {
+  if (!req.user || !req.user.id) {
+    console.log(req)
+    return res.status(401).json({ message: "User ID not found in token" });
+  }
+  try {
+    console.log(req.user)
+    const userId = req.user.id; // Assuming user is authenticated
+    const newProfilePic = `http://localhost:4507/uploads/${req.file.filename}` // File path for the new image
+
+    // Update user profile picture in the database
+    const updatedUser=await User.findByIdAndUpdate(userId, { picture: newProfilePic },{new:true});
+
+    if (!updatedUser) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    // Send back the new profile picture path
+    res.json({ message: "Profile picture updated", profilePic: newProfilePic });
+  } catch (error) {
+    console.error("Error uploading profile picture:", error);
+    res.status(500).json({ error: "Failed to upload profile picture" });
   }
 });
 
