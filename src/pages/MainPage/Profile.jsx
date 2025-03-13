@@ -85,8 +85,10 @@ const Profile = () => {
 
   return (
     <>
-      <ProfilePic />
-    <div className="profile-container">
+      <div className="profile-pic-container">
+        <ProfilePic />
+      </div>
+    <div className="profile-page-container">
       <div className="profile-header">
         <h2>User Profile</h2>
       </div>

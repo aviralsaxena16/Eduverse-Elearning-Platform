@@ -131,13 +131,13 @@ const GamePage = () => {
           font-weight: bold;
           font-family: 'Russo One', sans-serif;
           color: #fff;
-          text-shadow: 0 0 10px #6357ff, 0 0 20px #6357ff, 0 0 30px #6357ff;
+          text-shadow: 0 0 10pxrgb(48, 64, 213), 0 0 20px #6357ff, 0 0 30px #6357ff;
           letter-spacing: 2px;
           margin-bottom: 15px;
           background: linear-gradient(to right, #c31432, #240b36);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
-          animation: glow 3s ease-in-out infinite alternate;
+         
         }
 
         @keyframes glow {

@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema({
     },
     picture: {  // Add this field to store the profile picture
         type: String,
-        default: ''
+        default: '/assets/user.png'
     },
    
     dob: {  

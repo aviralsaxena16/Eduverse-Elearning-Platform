@@ -29,7 +29,7 @@
 .title {
   font-size: 22px;
   font-weight: bold;
-  color:#101d8a;
+  color:#091edd;
   margin-bottom: 10px;
 }
 
@@ -57,7 +57,7 @@
 /* Video Metadata */
 .vedio-text {
   font-size: 14px;
-  color:  #101d8a;
+  color:  #091edd;
   margin-bottom: 15px;
   display: flex;
   gap: 20px;
@@ -93,12 +93,12 @@
 
 /* Like Button */
 .like {
-  background:  #101d8a;
+  background:  #091edd;
   color: white;
 }
 
 .like:hover {
-  background:  #101d8a;
+  background:  #091edd;
 }
 
 /* Dislike Button */
