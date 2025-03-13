@@ -89,6 +89,7 @@ const Profile = () => {
   return (
     <>
     <div className="profile-page-container">
+    <ProfilePic isEditing={isEditing} />
     <div className="profile-header">
         <div className="profile-info">
           <div className="profile-picture">

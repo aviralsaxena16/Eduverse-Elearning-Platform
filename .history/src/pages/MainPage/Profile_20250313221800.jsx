@@ -92,6 +92,7 @@ const Profile = () => {
     <div className="profile-header">
         <div className="profile-info">
           <div className="profile-picture">
+            
             <ProfilePic isEditing={isEditing} />
           </div>
           <div className="user-details">

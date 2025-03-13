@@ -2,8 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { useState,useEffect } from 'react';
 import pic from '../../assets/user.png'
-import './ProfilePic.css'
-const ProfilePic = ({isEditing}) => {
+const ProfilePic = () => {
   const [profilePic,setProfilePic]=useState('')
   const [selectedFile,setSelectedfile]=useState('')
   const [error,setError]=useState('')
@@ -63,7 +62,7 @@ const ProfilePic = ({isEditing}) => {
 
   return (
     <div className="profile-pic-container">
-       {profilePic ? (
+    {profilePic ? (
         <img 
             src={profilePic}
             alt="Profile"
@@ -80,25 +79,9 @@ const ProfilePic = ({isEditing}) => {
             <img src={pic} style={{height:'150px',borderRadius:'50%'}}/>
         </div>
       )}
-      {/* Show upload option only when editing */}
-      {isEditing && (
-        <div className="profile-pic-overlay">
-          <label htmlFor="profile-pic-input" className="change-pic-btn">Change</label>
-          <input 
-            type="file" 
-            id="profile-pic-input" 
-            accept="image/*" 
-            onChange={handleFileChange} 
-          />
-          {selectedFile && <button onClick={handleUpload} className="upload-btn">Save</button>}
-        </div>
-      )}
 
-   {/* <div className="profile-pic-overlay">
-        <label htmlFor="profile-pic-input" className="change-pic-btn">Change</label>
-        <input type="file" id="profile-pic-input" accept="image/*" onChange={handleFileChange} />
-        {selectedFile && <button onClick={handleUpload} className="upload-btn">Save</button>}
-      </div>*/}
+      <input type="file" onChange={handleFileChange} />
+      <button onClick={handleUpload}>Save Changes</button>
       {error && <p style={{ color: 'red' }}>{error}</p>}
     </div>  
 )

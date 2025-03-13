@@ -92,7 +92,7 @@ const Profile = () => {
     <div className="profile-header">
         <div className="profile-info">
           <div className="profile-picture">
-            <ProfilePic isEditing={isEditing} />
+            <ProfilePic />
           </div>
           <div className="user-details">
             <h2>Hey, {userProfile.name || "User"}!</h2>
@@ -186,7 +186,7 @@ const Profile = () => {
             Save Profile
           </button>
         )}
-      </div>
+        </div>
       </div>
     </div>
     </>

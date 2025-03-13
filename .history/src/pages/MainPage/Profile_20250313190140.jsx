@@ -92,7 +92,7 @@ const Profile = () => {
     <div className="profile-header">
         <div className="profile-info">
           <div className="profile-picture">
-            <ProfilePic isEditing={isEditing} />
+            <ProfilePic />
           </div>
           <div className="user-details">
             <h2>Hey, {userProfile.name || "User"}!</h2>
@@ -170,7 +170,7 @@ const Profile = () => {
             <p>{userProfile.about || "No description"}</p>
           )}
         </div>
-        <div className="button-container ">
+        <di
         <button 
           className="edit-button" 
           onClick={() => setIsEditing(!isEditing)}
@@ -186,7 +186,6 @@ const Profile = () => {
             Save Profile
           </button>
         )}
-      </div>
       </div>
     </div>
     </>

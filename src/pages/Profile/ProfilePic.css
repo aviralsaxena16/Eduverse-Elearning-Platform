@@ -1,0 +1,66 @@
+.profile-pic-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.7rem; /* Space between pic and button */
+    position: relative;
+  }
+  
+  /* Profile Picture Styling */
+  .profile-pic,
+  .profile-pic-placeholder img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 4px solid white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    object-fit: cover;
+    background-color: white;
+  }
+  
+  /* Overlay for Change Button */
+  .profile-pic-overlay {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem; /* Space between Change & Save buttons */
+  }
+  
+  /* Hidden File Input */
+  #profile-pic-input {
+    display: none;
+  }
+  
+  /* Change Button */
+  .change-pic-btn {
+    background-color: var(--primary-blue);
+    color: white;
+    padding: 0.4rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+  }
+  
+  .change-pic-btn:hover {
+    background-color: var(--secondary-blue);
+    transform: translateY(-2px);
+  }
+  
+  /* Save Button */
+  .upload-btn {
+    background-color: #28a745; /* Green color for save */
+    color: white;
+    padding: 0.4rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    border: none;
+  }
+  
+  .upload-btn:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+  }
+  

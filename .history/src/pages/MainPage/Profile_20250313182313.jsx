@@ -35,8 +35,7 @@ const Profile = () => {
         }
         const formattedDob = data.user.dob ? new Date(data.user.dob).toISOString().split('T')[0] : "";
       setUserProfile({
-        name:data.user.name,
-        email:data.user.email,
+        name:
         dob:formattedDob,
         institute:data.user.institute,
         githubLink:data.user.githubLink,
@@ -88,23 +87,12 @@ const Profile = () => {
 
   return (
     <>
+      <div className="profile-pic-container">
+        <ProfilePic />
+      </div>
     <div className="profile-page-container">
-    <div className="profile-header">
-        <div className="profile-info">
-          <div className="profile-picture">
-            <ProfilePic isEditing={isEditing} />
-          </div>
-          <div className="user-details">
-            <h2>Hey, {userProfile.name || "User"}!</h2>
-            {userProfile.email && (
-              <p className="email-link">
-                <a href={`mailto:${userProfile.email}`} className="email-text">
-                  {userProfile.email}
-                </a>
-              </p>
-            )}
-          </div>
-        </div>
+      <div className="profile-header">
+        <h2>User Profile</h2>
       </div>
 
       <div className="profile-details">
@@ -170,7 +158,6 @@ const Profile = () => {
             <p>{userProfile.about || "No description"}</p>
           )}
         </div>
-        <div className="button-container ">
         <button 
           className="edit-button" 
           onClick={() => setIsEditing(!isEditing)}
@@ -186,7 +173,6 @@ const Profile = () => {
             Save Profile
           </button>
         )}
-      </div>
       </div>
     </div>
     </>
