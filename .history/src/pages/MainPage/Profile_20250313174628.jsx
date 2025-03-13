@@ -33,9 +33,8 @@ const Profile = () => {
         if (!data.success) {
           throw new Error(data.message);
         }
-        const formattedDob = data.user.dob ? new Date(data.user.dob).toISOString().split('T')[0] : "";
       setUserProfile({
-        dob:formattedDob,
+        dob:data.user.dob,
         institute:data.user.institute,
         githubLink:data.user.githubLink,
         skills:data.user.skills,
@@ -54,6 +53,7 @@ const Profile = () => {
   
 
   const handleSave = async () => {
+    if (!window.confirm("Are you sure you want to save changes?")) return;
     try {
       const response = await fetch("http://localhost:4507/home/profile", {
         method: "PUT",
@@ -94,8 +94,17 @@ const Profile = () => {
         <h2>User Profile</h2>
       </div>
 
+      {loading ? (
+          <p>Loading profile...</p>
+        ) : (
       <div className="profile-details">
-        
+        <button 
+          className="edit-button" 
+          onClick={() => setIsEditing(!isEditing)}
+        >
+          {isEditing ? "Cancel" : "Edit Profile"}
+        </button>
+
         <div>
           <label>Date of Birth:</label>
           {isEditing ? (
@@ -127,15 +136,14 @@ const Profile = () => {
               onChange={(e) => setUserProfile({ ...userProfile, githubLink: e.target.value })}
             />
           ) : userProfile.githubLink ? (
-              <p><a href={userProfile.githubLink} target="_blank" rel="noopener noreferrer">
+            <p>
+              <a href={userProfile.githubLink} target="_blank" rel="noopener noreferrer">
                 {userProfile.githubLink}
-              </a></p>
-            ) : (
-              <p>Not specified</p>
-            )}
-            
-          
-
+              </a>
+            </p>
+          ) : (
+            <p>Not specified</p>
+          )}
           <label>Skills:</label>
           {isEditing ? (
             <input
@@ -157,12 +165,6 @@ const Profile = () => {
             <p>{userProfile.about || "No description"}</p>
           )}
         </div>
-        <button 
-          className="edit-button" 
-          onClick={() => setIsEditing(!isEditing)}
-        >
-          {isEditing ? "Cancel" : "Edit Profile"}
-        </button>
 
         {isEditing && (
           <button 
@@ -173,6 +175,7 @@ const Profile = () => {
           </button>
         )}
       </div>
+        )}
     </div>
     </>
   );};

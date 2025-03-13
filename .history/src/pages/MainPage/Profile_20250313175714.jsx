@@ -33,9 +33,8 @@ const Profile = () => {
         if (!data.success) {
           throw new Error(data.message);
         }
-        const formattedDob = data.user.dob ? new Date(data.user.dob).toISOString().split('T')[0] : "";
       setUserProfile({
-        dob:formattedDob,
+        dob:data.user.dob,
         institute:data.user.institute,
         githubLink:data.user.githubLink,
         skills:data.user.skills,
@@ -157,13 +156,7 @@ const Profile = () => {
             <p>{userProfile.about || "No description"}</p>
           )}
         </div>
-        <button 
-          className="edit-button" 
-          onClick={() => setIsEditing(!isEditing)}
-        >
-          {isEditing ? "Cancel" : "Edit Profile"}
-        </button>
-
+        
         {isEditing && (
           <button 
             className="save-button" 

@@ -35,7 +35,7 @@ const Profile = () => {
         }
         const formattedDob = data.user.dob ? new Date(data.user.dob).toISOString().split('T')[0] : "";
       setUserProfile({
-        dob:formattedDob,
+        dob:for,
         institute:data.user.institute,
         githubLink:data.user.githubLink,
         skills:data.user.skills,
