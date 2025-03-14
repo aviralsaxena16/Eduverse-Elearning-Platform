@@ -6,6 +6,8 @@ import bcrypt from 'bcrypt';
 import cookieParser from 'cookie-parser';
 import jwt from 'jsonwebtoken';
 import { OAuth2Client } from 'google-auth-library';
+import cloudinary from './config/cloudinary.js';
+import {CloudinaryStorage} from "multer-storage-cloudinary";
 
 import multer from 'multer';
 import path from 'path'
@@ -16,12 +18,15 @@ const JWT_SECRET = "Its Alright";
 
 const app = express();
 app.use(express.json());
+
 app.use('/uploads', express.static('uploads'))
 
-const storage = multer.diskStorage({
-  destination: "./uploads/",
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname)); // Filename with timestamp
+const storage = new CloudinaryStorage({
+  cloudinary:cloudinary, 
+  params: {
+    folder: "profile_pics", // Cloudinary folder where images will be stored
+    allowed_formats: ["jpg", "png", "jpeg"],
+    public_id: (req, file) => `${Date.now()}-${file.originalname}`,
   },
 });
 
@@ -31,7 +36,7 @@ const upload = multer({ storage: storage });
 const client = new OAuth2Client(GOOGLE_CLIENT_ID);
 
 app.use(cors({
-  origin: ["http://localhost:5175"],
+  origin: ["http://localhost:5174"],
   methods: ['GET', 'POST', 'PUT'],
   credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization'],
@@ -56,7 +61,7 @@ const connectDB = async () => {
 };
 const verifyUser = (req, res, next) => {
   const token = req.cookies.token;
-  console.log('Token received:', token); // Debug: log the token
+  // console.log('Token received:', token); // Debug: log the token
 
   if (!token) {
     console.log('No token found'); // Debug: log when no token is present
@@ -69,7 +74,7 @@ const verifyUser = (req, res, next) => {
       return res.status(403).json({ message: 'Token is not valid' });
     }
     
-    console.log('Decoded token:', decoded); // Debug: log decoded token
+    // console.log('Decoded token:', decoded); // Debug: log decoded token
     req.user = decoded;
     next();
   })};
@@ -301,9 +306,9 @@ app.post("/home/upload-profile", verifyUser,upload.single("profilePic"), async (
     return res.status(401).json({ message: "User ID not found in token" });
   }
   try {
-    console.log(req.user)
+    console.log(req.file.path)
     const userId = req.user.id; // Assuming user is authenticated
-    const newProfilePic = `http://localhost:4507/uploads/${req.file.filename}` // File path for the new image
+    const newProfilePic = req.file.path; // Cloudinary returns the URL in req.file.path // File path for the new image
 
     // Update user profile picture in the database
     const updatedUser=await User.findByIdAndUpdate(userId, { picture: newProfilePic },{new:true});
