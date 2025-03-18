@@ -7,6 +7,24 @@
   margin: 0 auto;
 }
 
+.back-button {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  font-size: 18px;
+  color: #333;
+  transition: color 0.3s;
+}
+
+.back-button:hover {
+  color: #5b4bc9; /* Matches your theme */
+}
 
 h1 {
   text-align: center;

@@ -1,4 +1,13 @@
 
+const NotificationPage = () => {
+  return (
+    <div>Coming Soon!!</div>
+  )
+}
+
+export default NotificationPage
+
+import React from 'react';
 
 const ChatRoom = () => {
   return (
@@ -32,4 +41,4 @@ const styles = {
   },
 };
 
-export default ChatRoom;
+export default NotificationPage;

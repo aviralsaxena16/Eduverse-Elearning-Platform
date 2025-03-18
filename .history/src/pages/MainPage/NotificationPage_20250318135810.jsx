@@ -1,6 +1,15 @@
 
+const NotificationPage = () => {
+  return (
+    <div>Coming Soon!!</div>
+  )
+}
 
-const ChatRoom = () => {
+export default NotificationPage
+
+import React from 'react';
+
+const Notification = () => {
   return (
     <div style={styles.container}>
       <div style={styles.content}>ChatRoom Coming soon!</div>
@@ -32,4 +41,4 @@ const styles = {
   },
 };
 
-export default ChatRoom;
+export default NotificationPage;

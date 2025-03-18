@@ -77,51 +77,6 @@ const GamePage = () => {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Russo+One&display=swap');
 
-        .back-button {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  z-index: 10;
-}
-
-.back-button:hover {
-  background: rgba(255, 255, 255, 0.2);
-  box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.3);
-}
-
-.back-button svg {
-  color: white;
-  transition: transform 0.2s ease;
-}
-
-.back-button:hover svg {
-  transform: translateX(-3px);
-}
-
-@media (max-width: 768px) {
-  .back-button {
-    top: 15px;
-    left: 15px;
-    width: 40px;
-    height: 40px;
-  }
-
-  .back-button svg {
-    width: 20px;
-    height: 20px;
-  }
-}
-
         .game-page {
           min-height: 100vh;
           display: flex;

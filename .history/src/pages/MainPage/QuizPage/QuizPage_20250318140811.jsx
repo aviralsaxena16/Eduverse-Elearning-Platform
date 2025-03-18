@@ -36,9 +36,7 @@ const QuizPage = () => {
   
   return (
     <>
-     <button onClick={() => navigate(-1)} className="back-button">
-        <ArrowLeft size={24} />
-      </button>
+    
     <h1>Quiz Page</h1>
     <div className="quiz-page">
     

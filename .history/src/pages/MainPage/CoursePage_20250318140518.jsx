@@ -88,9 +88,6 @@ function YouTubeVideoSearch() {
 
   return (
     <div className="youtube-search">
-      <button onClick={() => navigate(-1)} className="back-button">
-        <ArrowLeft size={24} /> {/* Arrow icon */}
-      </button>
       <div className="search-container">
         <input
           type="text"

@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './course.css';
-import { ArrowLeft } from 'lucide-react';
+
 const API_KEY = 'AIzaSyDw9Xp4oJEnDNP-hn5BjQ7-xgxbgXYtB2c';
 const DEFAULT_SEARCH_TERMS = [
   'AI/Ml',
@@ -88,9 +88,6 @@ function YouTubeVideoSearch() {
 
   return (
     <div className="youtube-search">
-      <button onClick={() => navigate(-1)} className="back-button">
-        <ArrowLeft size={24} /> {/* Arrow icon */}
-      </button>
       <div className="search-container">
         <input
           type="text"
@@ -103,7 +100,9 @@ function YouTubeVideoSearch() {
           {loading ? 'Searching...' : 'Search'}
         </button>
       </div>
-  
+      <button onClick={() => navigate(-1)} className="back-button">
+          Back
+        </button>
       {error && <div className="alert">{error}</div>}
       {loading && <div className="loading">Loading videos...</div>}
 

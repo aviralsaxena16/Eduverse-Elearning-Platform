@@ -1,4 +1,4 @@
-
+import React from 'react';
 
 const ChatRoom = () => {
   return (
@@ -15,6 +15,7 @@ const styles = {
     alignItems: 'center',
     height: '100vh',
     background: 'linear-gradient(to right, #ffffff, #5b4bc9)',
+    borderRadius: '20px',
     boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.1)',
     textAlign: 'center',
   },

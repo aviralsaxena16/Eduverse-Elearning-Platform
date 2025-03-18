@@ -1,6 +1,5 @@
 
-
-const ChatRoom = () => {
+const NotificationPage = () => {
   return (
     <div style={styles.container}>
       <div style={styles.content}>ChatRoom Coming soon!</div>
@@ -32,4 +31,4 @@ const styles = {
   },
 };
 
-export default ChatRoom;
+export default NotificationPage;

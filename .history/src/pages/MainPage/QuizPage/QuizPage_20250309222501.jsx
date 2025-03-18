@@ -2,7 +2,7 @@ import Card from '../../../components/Cards/Card'
 import art from '../../../assets/mandala.jpg'
 import './quiz.css'
 import {useNavigate} from 'react-router-dom'
-import { ArrowLeft } from 'lucide-react';
+
 const QuizPage = () => {
 
    const navigate = useNavigate();
@@ -36,9 +36,6 @@ const QuizPage = () => {
   
   return (
     <>
-     <button onClick={() => navigate(-1)} className="back-button">
-        <ArrowLeft size={24} />
-      </button>
     <h1>Quiz Page</h1>
     <div className="quiz-page">
     
