@@ -28,37 +28,37 @@ const ProfilePic = ({isEditing}) => {
 }, []);
 
 
-    const handleFileChange=(e)=>{
-        setSelectedfile(e.target.files[0])
+const handleFileChange=(e)=>{
+    setSelectedfile(e.target.files[0])
+}
+
+const handleUpload = async () => {
+    if (!selectedFile) {
+        alert('Please select a file first!');
+        return;
     }
 
-    const handleUpload = async () => {
-        if (!selectedFile) {
-          alert('Please select a file first!');
-          return;
+    const formData = new FormData();
+    formData.append('profilePic', selectedFile);
+
+    try {
+        const response = await axios.post('http://localhost:4507/home/upload-profile', formData, {
+        withCredentials: true, // Ensures cookies are sent for authentication
+        headers: { 'Content-Type': 'multipart/form-data' },
+        });
+
+        if (response.data.profilePic) {
+        setProfilePic(response.data.profilePic);
+        setSelectedfile(null)
+        alert('Profile picture updated successfully!');
         }
-    
-        const formData = new FormData();
-        formData.append('profilePic', selectedFile);
-    
-        try {
-          const response = await axios.post('http://localhost:4507/home/upload-profile', formData, {
-            withCredentials: true, // Ensures cookies are sent for authentication
-            headers: { 'Content-Type': 'multipart/form-data' },
-          });
-    
-          if (response.data.profilePic) {
-            setProfilePic(response.data.profilePic);
-            setSelectedfile(null)
-            alert('Profile picture updated successfully!');
-          }
-        } catch (err) {
-          setError('Failed to upload profile picture');
-          console.error('Upload error:', err);
-        }
-      };
-    
-    
+    } catch (err) {
+        setError('Failed to upload profile picture');
+        console.error('Upload error:', err);
+    }
+    };
+
+
 
 
   return (
@@ -94,11 +94,6 @@ const ProfilePic = ({isEditing}) => {
         </div>
       )}
 
-   {/* <div className="profile-pic-overlay">
-        <label htmlFor="profile-pic-input" className="change-pic-btn">Change</label>
-        <input type="file" id="profile-pic-input" accept="image/*" onChange={handleFileChange} />
-        {selectedFile && <button onClick={handleUpload} className="upload-btn">Save</button>}
-      </div>*/}
       {error && <p style={{ color: 'red' }}>{error}</p>}
     </div>  
 )
