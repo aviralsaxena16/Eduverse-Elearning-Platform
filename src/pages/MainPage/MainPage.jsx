@@ -1,10 +1,15 @@
+
 import Navbar2 from '../../components/Navbar2/Navbar2.jsx';
 import BotPage from './BotPage.jsx';
 import axios from 'axios';
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { API_KEY } from '../../config.js'
 
-const API_KEY = 'AIzaSyDw9Xp4oJEnDNP-hn5BjQ7-xgxbgXYtB2c';
+// const API_KEY=process.env.VITE_API_KEY;
+console.log('API_KEY:', API_KEY); // Debug: Check if the API key is loaded
+
+
 const DEFAULT_SEARCH_TERMS = [
   'AI/Ml',
   'javascript programming tutorial ',

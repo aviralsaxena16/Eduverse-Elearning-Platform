@@ -1,10 +1,15 @@
+
 import { useState,useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 // import './login.css';
+import { API_KEY } from '../../config.js'; // Import the API key
 
-const API_KEY = 'AIzaSyDPv0_vP32w4vUJ2qwSO0l1m-BL-S20DrE';  
+
+// const API_KEY=process.env.VITE_API_KEY;
+console.log('API_KEY:', API_KEY); // Debug: Check if the API key is loaded
 
 function YouTubeVideoSearch() {
+  console.log('API_KEY:', API_KEY)
   const [query, setQuery] = useState('');
   const [videos, setVideos] = useState([]);
   const [error, setError] = useState(null);
