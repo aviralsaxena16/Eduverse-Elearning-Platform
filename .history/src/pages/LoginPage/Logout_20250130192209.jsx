@@ -9,7 +9,7 @@ const Logout = () => {
 
     const handleLogout = async () => {
         try {
-            const response = await axios.post('https://eduverse-backend-15ur.onrender.com/logout', {}, {
+            const response = await axios.post('http://localhost:4507/logout', {}, {
                 withCredentials: true
             });
             

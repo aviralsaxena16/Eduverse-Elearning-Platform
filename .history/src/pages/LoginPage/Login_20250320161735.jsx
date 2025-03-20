@@ -24,7 +24,7 @@ const Login = () => {
 
     try {
       const result = await axios.post(
-        "https://eduverse-backend-15ur.onrender.com/login",
+        "http://localhost:4507/login",
         { email, password },
         { withCredentials: true }
       );

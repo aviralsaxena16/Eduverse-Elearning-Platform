@@ -25,7 +25,7 @@ const Signup = () => {
     }
 
     try {
-      const result = await axios.post("https://eduverse-backend-15ur.onrender.com/register", 
+      const result = await axios.post("http://localhost:4507/register", 
         {
           name,
           email,

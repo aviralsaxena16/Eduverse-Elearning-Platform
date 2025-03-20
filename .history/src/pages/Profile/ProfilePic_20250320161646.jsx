@@ -1,4 +1,4 @@
-
+import React from 'react';
 import axios from 'axios';
 import { useState,useEffect } from 'react';
 import pic from '../../assets/user.png'
@@ -42,7 +42,7 @@ const handleUpload = async () => {
     formData.append('profilePic', selectedFile);
 
     try {
-        const response = await axios.post('https://eduverse-backend-15ur.onrender.com/home/upload-profile', formData, {
+        const response = await axios.post('http://localhost:4507/home/upload-profile', formData, {
         withCredentials: true, // Ensures cookies are sent for authentication
         headers: { 'Content-Type': 'multipart/form-data' },
         });
