@@ -8,13 +8,13 @@ import QuizPage from '../pages/MainPage/QuizPage/QuizPage.jsx';
 import NotificationPage from '../pages/MainPage/NotificationPage.jsx';
 import Login from '../pages/LoginPage/Login.jsx';
 import Signup from '../pages/SignUp/Signup.jsx';
-import Ques from '../pages/MainPage/QuizPage/ques.jsx';
+import Ques from '../pages/MainPage/QuizPage/Ques.jsx';
 import ChatRoom from '../pages/MainPage/chatroom/ChatRoom.jsx';
 import ProtectedRoute from './ProtectedRoute.jsx';
 import VideoDetails from '../pages/MainPage/VideoDetails.jsx';
 import Logout from '../pages/LoginPage/Logout.jsx';
 import Game_H1 from '../pages/Game/Game_H1.jsx';
-import Tictac from '../pages/Game/tictac.jsx';
+import Tictac from '../pages/Game/Tictac.jsx';
 import Profile from '../pages/MainPage/Profile.jsx';
 const Routers = () => {
   return (
