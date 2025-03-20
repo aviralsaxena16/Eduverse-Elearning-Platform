@@ -11,7 +11,7 @@ import dotenv from 'dotenv'
 const app = express();
 
 app.use(cors({
-  origin: ["http://localhost:5174"],
+  origin: ["https://eduversefrontend-l6l3.onrender.com/"],
   methods: ['GET', 'POST', 'PUT'],
   credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization'],
