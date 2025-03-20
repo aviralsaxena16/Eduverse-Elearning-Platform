@@ -31,7 +31,7 @@ const MainPage = () => {
 
   // Authentication check
   useEffect(() => {
-    axios.get('http://localhost:4507/home')
+    axios.get('https://eduverse-backend-15ur.onrender.com/home')
       .then(res => {
         if(res.data !== 'Success') {
           navigate('/login');

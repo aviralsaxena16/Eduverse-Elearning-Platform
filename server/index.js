@@ -1,3 +1,5 @@
+import dotenv from 'dotenv'
+dotenv.config()
 import cors from 'cors';
 import express from 'express';
 import cookieParser from 'cookie-parser';
@@ -5,13 +7,12 @@ import cookieParser from 'cookie-parser';
 import connectDB from './config/database.js'
 import authRoutes from './routes/auth.routes.js'
 import userRoutes from './routes/user.routes.js'
-import dotenv from 'dotenv'
 
 
 const app = express();
 
 app.use(cors({
-  origin: ["https://eduversefrontend-l6l3.onrender.com/"],
+  origin: ["https://eduversefrontend-l6l3.onrender.com"],
   methods: ['GET', 'POST', 'PUT'],
   credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization'],
@@ -19,7 +20,6 @@ app.use(cors({
 }));
 app.use(cookieParser());
 // Constants
-dotenv.config()
 app.use(express.json());
 
 
