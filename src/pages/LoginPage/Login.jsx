@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import "./Login.css";
 import { useAuth } from "../../context/context.jsx";
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
-
+import Logo from '../../assets/Logo.png'
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -74,7 +74,7 @@ const Login = () => {
         <div className="login-form-section">
           <div className="brand-section">
             <div className="logo">
-              <img src={logo} alt="Logo" />
+              <img src={Logo} alt="Logo" />
             </div>
             <h3 className="brand-name">Eduverse</h3>
           </div>
