@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import './tictac.css';
 
@@ -40,7 +40,7 @@ const Tictac = () => {
 
     setTimeout(async () => {
       try {
-        const response = await axios.post('https://eduverse-backend-15ur.onrender.com/move', { board: newBoard });
+        const response = await axios.post('/move', { board: newBoard });
         if (response.data.move !== null) {
           newBoard[response.data.move] = 'O';
           setBoard([...newBoard]);

@@ -24,7 +24,7 @@ const Login = () => {
 
     try {
       const result = await axios.post(
-        "https://eduverse-backend-15ur.onrender.com/login",
+        "http://localhost:4507/login",
         { email, password },
         { withCredentials: true }
       );
@@ -53,7 +53,7 @@ const Login = () => {
 
   const handleGoogleLoginSuccess = async (response) => {
     try {
-        const res = await axios.post('https://eduverse-backend-15ur.onrender.com/auth/google/callback', { token: response.credential });
+        const res = await axios.post('http://localhost:4507/auth/google/callback', { token: response.credential });
         if (res.data.success) {
             alert('Google Login Successful');
             login();

@@ -57,7 +57,7 @@ const Profile = () => {
 
   const handleSave = async () => {
     try {
-      const response = await fetch("https://eduverse-backend-15ur.onrender.com/home/profile", {
+      const response = await fetch("http://localhost:4507/home/profile", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
