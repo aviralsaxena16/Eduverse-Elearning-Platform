@@ -29,32 +29,3 @@
   color: #DEB041; /* Gold color on hover */
 }
 
-@media (max-width: 768px) {
-  .footer-text {
-    font-size: 14px;
-    margin-bottom: 15px;
-  }
-
-  .social-links {
-    gap: 10px;
-  }
-
-  .social-icon {
-    font-size: 16px;
-  }
-}
-
-@media (max-width: 480px) {
-  .footer {
-    padding: 15px;
-  }
-
-  .footer-text {
-    font-size: 12px;
-    margin-bottom: 10px;
-  }
-
-  .social-icon {
-    font-size: 14px;
-  }
-}

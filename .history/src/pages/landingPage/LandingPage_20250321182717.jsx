@@ -37,18 +37,6 @@ const LandingPage = () => {
       <Navbar/>
       <Body/>
 
-      <section className="features-section">
-        <h2 className="features-title">Why Choose EduVerse?</h2>
-        <div className="feature-cards">
-          {features.map((feature) => (
-            <div className="feature-card" key={feature.id}>
-              <div className="feature-icon">{feature.icon}</div>
-              <h3 className="feature-card-title">{feature.title}</h3>
-              <p className="feature-description">{feature.description}</p>
-            </div>
-          ))}
-        </div>
-      </section>
       
       <Footer/>
     </div>
