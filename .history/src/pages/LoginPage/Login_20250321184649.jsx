@@ -19,7 +19,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null); 
-    setLoading(true); 
+    setLoading(true); // Start loading
 
     try {
       const result = await axios.post(
@@ -27,7 +27,7 @@ const Login = () => {
         { email, password },
         { withCredentials: true }
       );
-    
+      console.log(result);
       if (result.data.message === "Login successful!") {
         login();
         console.log("Login successfully done");

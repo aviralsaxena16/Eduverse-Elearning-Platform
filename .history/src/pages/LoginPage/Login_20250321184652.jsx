@@ -27,7 +27,7 @@ const Login = () => {
         { email, password },
         { withCredentials: true }
       );
-    
+      console.log(result);
       if (result.data.message === "Login successful!") {
         login();
         console.log("Login successfully done");
