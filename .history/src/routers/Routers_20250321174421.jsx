@@ -1,6 +1,7 @@
 import { Routes, Route} from 'react-router-dom';
 import LandingPage from '../pages/landingPage/LandingPage.jsx';
 import MainPage from '../pages/MainPage/MainPage.jsx';
+import BotPage from '../pages/MainPage/BotPage.jsx';
 import GamePage from '../pages/MainPage/GamePage.jsx';
 import CoursePage from '../pages/MainPage/CoursePage.jsx';
 import QuizPage from '../pages/MainPage/QuizPage/QuizPage.jsx';
