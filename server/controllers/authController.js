@@ -49,14 +49,14 @@ export const register=async (req, res) => {
                 if (isMatch) {
                   const token = jwt.sign(
                     { email: user.email, id: user._id }, // Make sure this matches what we check in profile
-                    'ItAlright', 
+                    JWT_SECRET, 
                     { expiresIn: '1d' }
                   );
                   res.cookie('token', token, {
                     httpOnly: true,
-                    secure: false, // Set to true in production with HTTPS
-                    sameSite: 'lax',
-                    maxAge: 24 * 60 * 60 * 1000 // 1 day
+                   secure: process.env.NODE_ENV === 'production', // Use HTTPS in production
+                  sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax', // Allow cross-origin cookies in production
+                  maxAge: 24 * 60 * 60 * 1000 // 1 day
                   });
                   res.json({
                     success: true,
