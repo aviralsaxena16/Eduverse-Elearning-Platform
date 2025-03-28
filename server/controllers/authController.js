@@ -115,8 +115,15 @@ export const register=async (req, res) => {
               JWT_SECRET,
               { expiresIn: '1h' }
           );
+
+          
   
-          res.cookie('token', authToken, { httpOnly: true, secure: false });
+          res.cookie('token', authToken, 
+            {httpOnly: true,
+            secure: process.env.NODE_ENV === 'production', // Use HTTPS in production
+           sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax', // Allow cross-origin cookies in production
+           maxAge: 24 * 60 * 60 * 1000} 
+           );
           res.json({
               success: true,
               token: authToken,
