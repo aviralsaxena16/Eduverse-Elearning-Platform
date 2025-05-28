@@ -65,5 +65,5 @@ Follow these steps to set up EduVerse locally:
 
 ### 1️⃣ Clone the Repository
 ```bash
-git clone https://github.com/your-username/EduVerse.git
+[https://github.com/aviralsaxena16/Eduverse-Elearning-Platform.git]
 cd EduVerse
